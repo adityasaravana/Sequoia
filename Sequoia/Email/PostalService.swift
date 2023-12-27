@@ -9,10 +9,6 @@ import Foundation
 import MailCore
 
 class PostalService: ObservableObject {
-    @Published var inbox: [MCOIMAPMessage] = []
-    
-    
-    static let shared = PostalService()
     
     var server: EmailServer
     var username: String
@@ -21,10 +17,10 @@ class PostalService: ObservableObject {
     
     
     
-    init() {
-        self.server = .icloud
-        self.username = Constants.testingUser
-        self.password = Constants.testingPwd
+    init(server: EmailServer, username: String, password: String) {
+        self.server = server
+        self.username = username
+        self.password = password
         
         session = MCOIMAPSession()
         session.hostname = server.hostname
@@ -51,12 +47,11 @@ class PostalService: ObservableObject {
             }
         }
     
-    func fetch(_ server: EmailServer, username: String, password: String, folder: String = "INBOX") {
+    func fetch(_ folder: EmailFolder) -> [MCOIMAPMessage]? {
+        let uids = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
+        var returnVal: [MCOIMAPMessage]? = nil
         
-        
-        let uids   = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
-        
-        if let fetchOperation = session.fetchMessagesOperation(withFolder: folder, requestKind: .headers, uids: uids) {
+        if let fetchOperation = session.fetchMessagesOperation(withFolder: folder.name, requestKind: .headers, uids: uids) {
             fetchOperation.start { error, fetchedMessages, vanishedMessages in
                 // We've finished downloading the messages!
                 
@@ -68,9 +63,11 @@ class PostalService: ObservableObject {
                 // And, let's print out the messages:
                 print("The post man delivereth: \(fetchedMessages.debugDescription)")
                 if let messages = fetchedMessages {
-                    self.inbox = messages
+                    returnVal = messages
                 }
             }
         }
+        
+        return returnVal
     }
 }

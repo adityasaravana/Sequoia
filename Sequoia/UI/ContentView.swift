@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var postalService: PostalService
+    @EnvironmentObject var mailManager: MailManager
     @State var selection: Set<Int> = [0]
     
     var body: some View {
         NavigationView {
             List(selection: self.$selection) {
-                NavigationLink(destination: InboxView().environmentObject(postalService)) {
+                NavigationLink(destination: InboxView().environmentObject(mailManager)) {
                     Label("Inbox", systemImage: "tray")
                 }
                 .tag(0)
@@ -31,5 +31,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(PostalService.shared)
+    ContentView().environmentObject(MailManager())
 }

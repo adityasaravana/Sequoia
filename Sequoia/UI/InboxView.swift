@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct InboxView: View {
-    @EnvironmentObject var postalService: PostalService
+    @EnvironmentObject var mailManager: MailManager
     var body: some View {
         NavigationView {
             List {
-                ForEach(postalService.inbox) { email in
-                    NavigationLink(destination: EmailView(message: email).environmentObject(postalService)) {
+                ForEach(mailManager.allInboxes) { email in
+                    NavigationLink(destination: EmailView(message: email).environmentObject(mailManager)) {
                         VStack(alignment: .leading) {
                             Text(email.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
                             Text(email.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
@@ -24,12 +24,10 @@ struct InboxView: View {
             }
             .listStyle(InsetListStyle())
             .refreshable {
-                Task {
-                    postalService.fetch(.icloud, username: Constants.testingUser, password: Constants.testingPwd)
-                }
+                mailManager.fetch()
             }
             .task {
-                postalService.fetch(.icloud, username: Constants.testingUser, password: Constants.testingPwd)
+                mailManager.fetch()
             }
             
             Text("Select an email")
@@ -37,7 +35,6 @@ struct InboxView: View {
         }
         .navigationTitle("Inbox")
         .toolbar {
-            
             ToolbarItem(placement: .navigation) {
                 Button(action: {}) {
                     Image(systemName: "square.and.pencil")
@@ -60,5 +57,5 @@ struct InboxView: View {
 }
 
 #Preview {
-    InboxView().environmentObject(PostalService.shared)
+    InboxView().environmentObject(MailManager.shared)
 }
