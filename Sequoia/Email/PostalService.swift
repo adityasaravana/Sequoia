@@ -11,20 +11,48 @@ import MailCore
 class PostalService: ObservableObject {
     @Published var inbox: [MCOIMAPMessage] = []
     
+    
     static let shared = PostalService()
     
-    init() {
-        
-    }
+    var server: EmailServer
+    var username: String
+    var password: String
+    var session: MCOIMAPSession
     
-    func fetch(_ server: EmailServer, username: String, password: String, folder: String = "INBOX") {
-        let session = MCOIMAPSession()
+    
+    
+    init() {
+        self.server = .icloud
+        self.username = Constants.testingUser
+        self.password = Constants.testingPwd
         
+        session = MCOIMAPSession()
         session.hostname = server.hostname
         session.port     = server.port
         session.username = username
         session.password = password
         session.connectionType = .TLS
+    }
+    
+    func fetchEmailContent(of message: MCOIMAPMessage, folder: String = "INBOX", completion: @escaping (String?, Error?) -> Void) {
+            let operation = session.fetchMessageOperation(withFolder: folder, uid: message.uid)
+            operation?.start { error, data in
+                if let error = error {
+                    completion(nil, error)
+                } else if let data = data, let messageParser = MCOMessageParser(data: data) {
+                    let htmlBody = messageParser.htmlBodyRendering()
+                    let plainTextBody = messageParser.plainTextBodyRendering()
+                    
+                    // You can choose to return either HTML or plain text
+                    completion(htmlBody ?? plainTextBody, nil)
+                } else {
+                    completion(nil, NSError(domain: "PostalServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse message content."]))
+                }
+            }
+        }
+    
+    func fetch(_ server: EmailServer, username: String, password: String, folder: String = "INBOX") {
+        
         
         let uids   = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
         

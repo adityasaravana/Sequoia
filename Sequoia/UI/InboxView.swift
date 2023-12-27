@@ -13,7 +13,7 @@ struct InboxView: View {
         NavigationView {
             List {
                 ForEach(postalService.inbox) { email in
-                    NavigationLink(destination: EmailView(message: email)) {
+                    NavigationLink(destination: EmailView(message: email).environmentObject(postalService)) {
                         VStack(alignment: .leading) {
                             Text(email.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
                             Text(email.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
