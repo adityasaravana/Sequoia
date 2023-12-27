@@ -13,7 +13,6 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            
             List(selection: self.$selection) {
                 NavigationLink(destination: InboxView().environmentObject(postalService)) {
                     Label("Inbox", systemImage: "tray")
