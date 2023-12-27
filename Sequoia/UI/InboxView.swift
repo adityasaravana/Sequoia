@@ -8,34 +8,29 @@
 import SwiftUI
 
 struct InboxView: View {
+    @EnvironmentObject var postalService: PostalService
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: MessageView()) {
-                    VStack(alignment: .leading) {
-                        Text("Jordan Singer").font(.headline)
-                        Text("Hello, World!").font(.body)
+                ForEach(postalService.inbox) { email in
+                    NavigationLink(destination: EmailView(message: email)) {
+                        VStack(alignment: .leading) {
+                            Text(email.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
+                            Text(email.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
+                        }
+                        .padding(.vertical, 8)
                     }
-                    .padding(.vertical, 8)
-                }
-                
-                NavigationLink(destination: MessageView()) {
-                    VStack(alignment: .leading) {
-                        Text("Craig Federighi").font(.headline)
-                        Text("lil apps + ").font(.body)
-                    }
-                    .padding(.vertical, 8)
-                }
-                
-                NavigationLink(destination: MessageView()) {
-                    VStack(alignment: .leading) {
-                        Text("I build my ideas").font(.headline)
-                        Text("I build my ideas #4 - 06/23/20").font(.body)
-                    }
-                    .padding(.vertical, 8)
                 }
             }
             .listStyle(InsetListStyle())
+            .refreshable {
+                Task {
+                    postalService.fetch(.icloud, username: Constants.testingUser, password: Constants.testingPwd)
+                }
+            }
+            .task {
+                postalService.fetch(.icloud, username: Constants.testingUser, password: Constants.testingPwd)
+            }
             
             Text("Select an email")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -60,11 +55,10 @@ struct InboxView: View {
                     Image(systemName: "trash")
                 }
             }
-            
         }
     }
 }
 
 #Preview {
-    InboxView()
+    InboxView().environmentObject(PostalService.shared)
 }

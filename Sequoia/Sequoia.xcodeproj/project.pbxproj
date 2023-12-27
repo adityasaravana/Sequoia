@@ -13,7 +13,7 @@
 		596627DE2B3BEB2E00DD7E1A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DD2B3BEB2E00DD7E1A /* Defaults.swift */; };
 		596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DF2B3BEBC700DD7E1A /* Constants.swift */; };
 		596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E12B3BEC9500DD7E1A /* InboxView.swift */; };
-		596627E42B3BECCE00DD7E1A /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E32B3BECCE00DD7E1A /* MessageView.swift */; };
+		596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E32B3BECCE00DD7E1A /* EmailView.swift */; };
 		5975C3552B3BC135008CC39B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3542B3BC135008CC39B /* App.swift */; };
 		5975C3572B3BC135008CC39B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3562B3BC135008CC39B /* ContentView.swift */; };
 		5975C3592B3BC136008CC39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C3582B3BC136008CC39B /* Assets.xcassets */; };
@@ -27,7 +27,7 @@
 		596627DD2B3BEB2E00DD7E1A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		596627DF2B3BEBC700DD7E1A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		596627E12B3BEC9500DD7E1A /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
-		596627E32B3BECCE00DD7E1A /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		596627E32B3BECCE00DD7E1A /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		5975C3512B3BC135008CC39B /* Sequoia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sequoia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975C3542B3BC135008CC39B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		5975C3562B3BC135008CC39B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			children = (
 				5975C3562B3BC135008CC39B /* ContentView.swift */,
 				596627E12B3BEC9500DD7E1A /* InboxView.swift */,
-				596627E32B3BECCE00DD7E1A /* MessageView.swift */,
+				596627E32B3BECCE00DD7E1A /* EmailView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 				596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */,
 				5975C36C2B3BC582008CC39B /* PostalService.swift in Sources */,
 				5975C3572B3BC135008CC39B /* ContentView.swift in Sources */,
-				596627E42B3BECCE00DD7E1A /* MessageView.swift in Sources */,
+				596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */,
 				596627DE2B3BEB2E00DD7E1A /* Defaults.swift in Sources */,
 				596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */,
 				596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */,

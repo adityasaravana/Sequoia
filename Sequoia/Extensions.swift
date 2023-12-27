@@ -6,7 +6,10 @@
 //
 
 import Foundation
+import MailCore
 
 public func printDivider() {
     print("-----------------------------------------------------------")
 }
+
+extension MCOIMAPMessage: Identifiable {}

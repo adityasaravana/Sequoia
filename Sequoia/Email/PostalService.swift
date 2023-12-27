@@ -8,7 +8,10 @@
 import Foundation
 import MailCore
 
-class PostalService {
+class PostalService: ObservableObject {
+    @Published var inbox: [MCOIMAPMessage] = []
+    
+    static let shared = PostalService()
     
     init() {
         
@@ -36,6 +39,9 @@ class PostalService {
                 
                 // And, let's print out the messages:
                 print("The post man delivereth: \(fetchedMessages.debugDescription)")
+                if let messages = fetchedMessages {
+                    self.inbox = messages
+                }
             }
         }
     }

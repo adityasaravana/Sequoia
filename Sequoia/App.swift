@@ -11,7 +11,7 @@ import SwiftUI
 struct SequoiaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(PostalService.shared)
         }
     }
 }
