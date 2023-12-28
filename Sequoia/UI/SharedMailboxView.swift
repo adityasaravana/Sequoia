@@ -68,7 +68,11 @@ struct SharedMailboxView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                RefreshButton(sharedFolder.correspondingIMAPFolder).environmentObject(mailManager)
+                Button {
+                    mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
+                } label: {
+                    Image(systemName: "tray.and.arrow.down")
+                }
             }
         }
     }

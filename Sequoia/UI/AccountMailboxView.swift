@@ -1,19 +1,21 @@
 //
-//  InboxView.swift
+//  AccountMailboxView.swift
 //  Sequoia
 //
-//  Created by Aditya Saravana on 12/26/23.
+//  Created by Aditya Saravana on 12/28/23.
 //
 
 import SwiftUI
 
-struct InboxView: View {
-    @EnvironmentObject var mailManager: MailManager
+struct AccountMailboxView: View {
+    @ObservedObject var account: Account
+    @State var emails: [Email] = []
+    var folder: IMAPFolder
     var body: some View {
         NavigationView {
             List {
-                ForEach(mailManager.accounts.first!.inbox) { email in
-                    NavigationLink(destination: EmailView(email: email).environmentObject(mailManager)) {
+                ForEach(emails) { email in
+                    NavigationLink(destination: EmailView(email: email)) {
                         VStack(alignment: .leading) {
                             Text(email.message.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
                             Text(email.message.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
@@ -24,10 +26,10 @@ struct InboxView: View {
             }
             .listStyle(InsetListStyle())
             .refreshable {
-                mailManager.fetchNewMail(.inbox)
+                account.fetchFolder(folder)
             }
             .task {
-                mailManager.fetchNewMail(.inbox)
+                account.fetchFolder(folder)
             }
             
             Text("Select an email")
@@ -54,12 +56,16 @@ struct InboxView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                RefreshButton(.inbox).environmentObject(mailManager)
+                Button {
+                    account.fetchFolder(folder)
+                } label: {
+                    Image(systemName: "tray.and.arrow.down")
+                }
             }
         }
     }
 }
 
 #Preview {
-    InboxView().environmentObject(MailManager.shared)
+    AccountMailboxView(account: MailManager.shared.accounts.first!, folder: .inbox)
 }

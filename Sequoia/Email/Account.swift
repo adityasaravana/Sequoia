@@ -8,7 +8,8 @@
 import Foundation
 import MailCore
 
-class Account: ObservableObject {
+class Account: ObservableObject, Identifiable {
+    var displayName: String
     var server: EmailServer
     var username: String
     var password: String
@@ -20,7 +21,7 @@ class Account: ObservableObject {
     @Published var archive: [Email] = []
     @Published var junk: [Email] = []
     @Published var trash: [Email] = []
-    @Published var customFolders: [String : [Email]] = [:]
+    @Published var customFolders: [CustomFolder] = []
     
     init(_ server: EmailServer, username: String, password: String) {
         self.server = server
@@ -33,6 +34,8 @@ class Account: ObservableObject {
         self.imap.username = username
         self.imap.password = password
         self.imap.connectionType = .TLS
+        
+        self.displayName = server.displayName
         
 #if DEBUG
         listIMAPFolders() { folders, error in
@@ -61,7 +64,7 @@ class Account: ObservableObject {
         fetchFolder(.junk)
         
         for element in customFolders {
-            fetchFolder(.custom(name: element.key))
+            fetchFolder(.custom(name: element.name))
         }
     }
     
@@ -80,8 +83,8 @@ class Account: ObservableObject {
         case .deleted:
             junk.removeAll()
         case .custom(_):
-            for element in customFolders {
-                customFolders[element.key] = []
+            for i in 0..<customFolders.count {
+                customFolders[i].folder = []
             }
         }
     }
@@ -119,10 +122,11 @@ class Account: ObservableObject {
                         case .deleted:
                             self.trash.append(email)
                         case .custom(let name):
-                            if self.customFolders[name] == nil {
-                                self.customFolders[name] = []
+                            for i in 0..<self.customFolders.count {
+                                if self.customFolders[i].name == name {
+                                    self.customFolders[i].folder.append(email)
+                                }
                             }
-                            self.customFolders[name]!.append(email)
                         }
                         
                     }

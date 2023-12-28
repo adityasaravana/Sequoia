@@ -31,6 +31,13 @@ enum EmailServer {
         }
     }
     
+    var displayName: String {
+        switch self {
+        case .icloud:
+            return "iCloud"
+        }
+    }
+    
     func folderName(for folder: IMAPFolder) -> String {
         switch self {
         case .icloud:

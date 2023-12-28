@@ -15,4 +15,23 @@ enum IMAPFolder: Equatable {
     case junk
     case deleted
     case custom(name: String)
+    
+    var displayName: String {
+        switch self {
+        case .inbox:
+            return "Inbox"
+        case .drafts:
+            return "Drafts"
+        case .archive:
+            return "Archive"
+        case .sent:
+            return "Sent"
+        case .junk:
+            return "Junk"
+        case .deleted:
+            return "Trash"
+        case .custom(let name):
+            return name
+        }
+    }
 }

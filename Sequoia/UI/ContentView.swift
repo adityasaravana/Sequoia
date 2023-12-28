@@ -24,6 +24,35 @@ struct ContentView: View {
                 NavigationLink(destination: SharedMailboxView(sharedFolder: .allSent).environmentObject(mailManager)) {
                     Label("All Sent", systemImage: "paperplane")
                 }
+                
+                ForEach(mailManager.accounts) { account in
+                    Section(account.displayName) {
+                        NavigationLink(destination: AccountMailboxView(account: account, folder: .inbox)) {
+                            Label("Inbox", systemImage: "tray")
+                        }
+                        NavigationLink(destination: AccountMailboxView(account: account, folder: .drafts)) {
+                            Label("Drafts", systemImage: "doc")
+                        }
+                        NavigationLink(destination: AccountMailboxView(account: account, folder: .sent)) {
+                            Label("Sent", systemImage: "paperplane")
+                        }
+                        NavigationLink(destination: AccountMailboxView(account: account, folder: .junk)) {
+                            Label("Junk", systemImage: "xmark.bin")
+                        }
+                        NavigationLink(destination: AccountMailboxView(account: account, folder: .deleted)) {
+                            Label("Trash", systemImage: "trash")
+                        }
+                        NavigationLink(destination: AccountMailboxView(account: account, folder: .archive)) {
+                            Label("Archive", systemImage: "archivebox")
+                        }
+                        
+                        ForEach(account.customFolders) { value in
+                            NavigationLink(destination: AccountMailboxView(account: account, folder: .custom(name: value.name))) {
+                                Label(value.name, systemImage: "folder")
+                            }
+                        }
+                    }
+                }
             }
             .listStyle(SidebarListStyle())
             .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, maxHeight: .infinity)
@@ -35,5 +64,9 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(MailManager())
+    ContentView()
+        .environmentObject(MailManager())
+        .onAppear {
+            MailManager.shared.accounts.append(Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
+        }
 }
