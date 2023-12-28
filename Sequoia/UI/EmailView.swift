@@ -8,6 +8,7 @@
 import SwiftUI
 import WebKit
 import MailCore
+import WebViewKit
 
 struct HTMLStringView: NSViewRepresentable {
     let htmlContent: String
@@ -21,7 +22,6 @@ struct HTMLStringView: NSViewRepresentable {
     }
 }
 
-
 struct EmailView: View {
     @EnvironmentObject var postalService: PostalService
     @State var messageBody: String = "Loading body..."
@@ -31,23 +31,12 @@ struct EmailView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                ScrollView {
-//                    HTMLStringView(htmlContent: messageBody).task {
-//                        postalService.fetchEmailContent(of: message) { content, error in
-//                            if let error = error {
-//                                messageBody = "Error fetching email content: \(error)"
-//                            } else if let content = content {
-//                                messageBody = content
-//                            }
-//                        }
-//                    }
-                    Text(email.message.debugDescription).drawingGroup()
-                }
+                    HTMLStringView(htmlContent: email.body)
+                
                 Spacer()
             }
             Spacer()
         }
-        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

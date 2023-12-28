@@ -24,6 +24,7 @@
 		59DB05852B3CE82500E786CB /* EmailFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05842B3CE82500E786CB /* EmailFolder.swift */; };
 		59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05862B3CE9E600E786CB /* MailManager.swift */; };
 		59DB05892B3D26DF00E786CB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05882B3D26DF00E786CB /* Email.swift */; };
+		59DB058C2B3D2D7600E786CB /* WebViewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 59DB058B2B3D2D7600E786CB /* WebViewKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +42,6 @@
 		5975C35D2B3BC136008CC39B /* Sequoia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sequoia.entitlements; sourceTree = "<group>"; };
 		5975C36B2B3BC582008CC39B /* PostalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalService.swift; sourceTree = "<group>"; };
 		5975C36D2B3BC761008CC39B /* EmailServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServer.swift; sourceTree = "<group>"; };
-		5975C36F2B3BCB7F008CC39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59DB05842B3CE82500E786CB /* EmailFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFolder.swift; sourceTree = "<group>"; };
 		59DB05862B3CE9E600E786CB /* MailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailManager.swift; sourceTree = "<group>"; };
 		59DB05882B3D26DF00E786CB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
@@ -52,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59DB058C2B3D2D7600E786CB /* WebViewKit in Frameworks */,
 				596627DC2B3BEB2400DD7E1A /* Defaults in Frameworks */,
 				596627D72B3BD10200DD7E1A /* MailCore in Frameworks */,
 			);
@@ -68,7 +69,6 @@
 				596627D82B3BE9D500DD7E1A /* Extensions.swift */,
 				5975C36A2B3BC4F4008CC39B /* Email */,
 				5975C3692B3BC4B3008CC39B /* UI */,
-				5975C36F2B3BCB7F008CC39B /* Info.plist */,
 				5975C3542B3BC135008CC39B /* App.swift */,
 				5975C3582B3BC136008CC39B /* Assets.xcassets */,
 				5975C35D2B3BC136008CC39B /* Sequoia.entitlements */,
@@ -135,6 +135,7 @@
 			packageProductDependencies = (
 				596627D62B3BD10200DD7E1A /* MailCore */,
 				596627DB2B3BEB2400DD7E1A /* Defaults */,
+				59DB058B2B3D2D7600E786CB /* WebViewKit */,
 			);
 			productName = Sequoia;
 			productReference = 5975C3512B3BC135008CC39B /* Sequoia.app */;
@@ -167,6 +168,7 @@
 			packageReferences = (
 				596627D52B3BD10200DD7E1A /* XCRemoteSwiftPackageReference "MailCoreSPM" */,
 				596627DA2B3BEB2400DD7E1A /* XCRemoteSwiftPackageReference "Defaults" */,
+				59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */,
 			);
 			productRefGroup = 5975C3522B3BC135008CC39B /* Products */;
 			projectDirPath = "";
@@ -347,7 +349,7 @@
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = Sequoia;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,7 +382,7 @@
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = Sequoia;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,6 +440,14 @@
 				kind = branch;
 			};
 		};
+		59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielsaidi/WebViewKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -450,6 +460,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 596627DA2B3BEB2400DD7E1A /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		59DB058B2B3D2D7600E786CB /* WebViewKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */;
+			productName = WebViewKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

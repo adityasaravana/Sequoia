@@ -31,19 +31,19 @@ class PostalService: ObservableObject {
         session.connectionType = .TLS
     }
     
-    func fetchEmailContent(of message: MCOIMAPMessage, folder: String = "INBOX", completion: @escaping (String?, Error?) -> Void) {
-        let operation = session.fetchMessageOperation(withFolder: folder, uid: message.uid)
+    func fetchEmailContent(of email: Email, folder: String = "INBOX") {
+        let operation = session.fetchMessageOperation(withFolder: folder, uid: email.id)
         operation?.start { error, data in
             if let error = error {
-                completion(nil, error)
+                
             } else if let data = data, let messageParser = MCOMessageParser(data: data) {
                 let htmlBody = messageParser.htmlBodyRendering()
                 let plainTextBody = messageParser.plainTextBodyRendering()
                 
                 // You can choose to return either HTML or plain text
-                completion(htmlBody ?? plainTextBody, nil)
+                email.body = htmlBody ?? "nil"
             } else {
-                completion(nil, NSError(domain: "PostalServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse message content."]))
+                email.body = "Failed to parse message content."
             }
         }
     }
@@ -66,7 +66,10 @@ class PostalService: ObservableObject {
                     switch folder {
                     case .inbox:
                         for message in messages {
-                            self.mailbox.inbox.append(.init(mailbox: self.mailbox, message: message))
+                            let email = Email.init(mailbox: self.mailbox, message: message)
+//                            if !self.mailbox.inbox.contains(email) {
+                                self.mailbox.inbox.append(email)
+//                            }
                         }
                         MailManager.shared.aggregateInboxes()
                     }
