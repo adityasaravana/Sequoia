@@ -11,6 +11,26 @@ struct AccountMailboxView: View {
     @ObservedObject var account: Account
     @State var emails: [Email] = []
     var folder: IMAPFolder
+    
+    func updateEmails() {
+        switch folder {
+        case .inbox:
+            emails = account.inbox
+        case .drafts:
+            emails = account.drafts
+        case .archive:
+            emails = account.archive
+        case .sent:
+            emails = account.sent
+        case .junk:
+            emails = account.junk
+        case .deleted:
+            emails = account.trash
+        case .custom(let name):
+            emails = []
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -27,9 +47,13 @@ struct AccountMailboxView: View {
             .listStyle(InsetListStyle())
             .refreshable {
                 account.fetchFolder(folder)
+                updateEmails()
+                
             }
             .task {
+                print("fetching folder \(folder.displayName)")
                 account.fetchFolder(folder)
+                updateEmails()
             }
             
             Text("Select an email")
@@ -58,6 +82,7 @@ struct AccountMailboxView: View {
             ToolbarItem(placement: .principal) {
                 Button {
                     account.fetchFolder(folder)
+                    updateEmails()
                 } label: {
                     Image(systemName: "tray.and.arrow.down")
                 }

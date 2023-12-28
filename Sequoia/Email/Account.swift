@@ -138,7 +138,6 @@ class Account: ObservableObject, Identifiable {
                     } else if folder == .sent {
                         MailManager.shared.aggregateSent()
                     }
-                    
                 }
             }
         }
