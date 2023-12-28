@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		596627D72B3BD10200DD7E1A /* MailCore in Frameworks */ = {isa = PBXBuildFile; productRef = 596627D62B3BD10200DD7E1A /* MailCore */; };
+		595E33282B3D716E00A55250 /* MailCore in Frameworks */ = {isa = PBXBuildFile; productRef = 595E33272B3D716E00A55250 /* MailCore */; };
+		595E332B2B3D736F00A55250 /* MailCore in Frameworks */ = {isa = PBXBuildFile; productRef = 595E332A2B3D736F00A55250 /* MailCore */; };
 		596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627D82B3BE9D500DD7E1A /* Extensions.swift */; };
 		596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DF2B3BEBC700DD7E1A /* Constants.swift */; };
 		596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E12B3BEC9500DD7E1A /* InboxView.swift */; };
@@ -49,8 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595E33282B3D716E00A55250 /* MailCore in Frameworks */,
+				595E332B2B3D736F00A55250 /* MailCore in Frameworks */,
 				59DB058C2B3D2D7600E786CB /* WebViewKit in Frameworks */,
-				596627D72B3BD10200DD7E1A /* MailCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,8 +130,9 @@
 			);
 			name = Sequoia;
 			packageProductDependencies = (
-				596627D62B3BD10200DD7E1A /* MailCore */,
 				59DB058B2B3D2D7600E786CB /* WebViewKit */,
+				595E33272B3D716E00A55250 /* MailCore */,
+				595E332A2B3D736F00A55250 /* MailCore */,
 			);
 			productName = Sequoia;
 			productReference = 5975C3512B3BC135008CC39B /* Sequoia.app */;
@@ -160,8 +163,8 @@
 			);
 			mainGroup = 5975C3482B3BC135008CC39B;
 			packageReferences = (
-				596627D52B3BD10200DD7E1A /* XCRemoteSwiftPackageReference "MailCoreSPM" */,
 				59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */,
+				595E33292B3D736F00A55250 /* XCRemoteSwiftPackageReference "MailCoreSPM" */,
 			);
 			productRefGroup = 5975C3522B3BC135008CC39B /* Products */;
 			projectDirPath = "";
@@ -416,7 +419,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		596627D52B3BD10200DD7E1A /* XCRemoteSwiftPackageReference "MailCoreSPM" */ = {
+		595E33292B3D736F00A55250 /* XCRemoteSwiftPackageReference "MailCoreSPM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vincedev/MailCoreSPM.git";
 			requirement = {
@@ -435,9 +438,13 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		596627D62B3BD10200DD7E1A /* MailCore */ = {
+		595E33272B3D716E00A55250 /* MailCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 596627D52B3BD10200DD7E1A /* XCRemoteSwiftPackageReference "MailCoreSPM" */;
+			productName = MailCore;
+		};
+		595E332A2B3D736F00A55250 /* MailCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 595E33292B3D736F00A55250 /* XCRemoteSwiftPackageReference "MailCoreSPM" */;
 			productName = MailCore;
 		};
 		59DB058B2B3D2D7600E786CB /* WebViewKit */ = {
