@@ -10,7 +10,8 @@
 		595E33282B3D716E00A55250 /* MailCore in Frameworks */ = {isa = PBXBuildFile; productRef = 595E33272B3D716E00A55250 /* MailCore */; };
 		595E332B2B3D736F00A55250 /* MailCore in Frameworks */ = {isa = PBXBuildFile; productRef = 595E332A2B3D736F00A55250 /* MailCore */; };
 		595E332F2B3D88A100A55250 /* IMAPFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E332E2B3D88A100A55250 /* IMAPFolder.swift */; };
-		595E33312B3E025500A55250 /* MailboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E33302B3E025500A55250 /* MailboxView.swift */; };
+		595E33312B3E025500A55250 /* SharedMailboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E33302B3E025500A55250 /* SharedMailboxView.swift */; };
+		595E33332B3E04EE00A55250 /* SharedFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E33322B3E04EE00A55250 /* SharedFolder.swift */; };
 		596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627D82B3BE9D500DD7E1A /* Extensions.swift */; };
 		596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DF2B3BEBC700DD7E1A /* Constants.swift */; };
 		596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E12B3BEC9500DD7E1A /* InboxView.swift */; };
@@ -30,7 +31,8 @@
 
 /* Begin PBXFileReference section */
 		595E332E2B3D88A100A55250 /* IMAPFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAPFolder.swift; sourceTree = "<group>"; };
-		595E33302B3E025500A55250 /* MailboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxView.swift; sourceTree = "<group>"; };
+		595E33302B3E025500A55250 /* SharedMailboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedMailboxView.swift; sourceTree = "<group>"; };
+		595E33322B3E04EE00A55250 /* SharedFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFolder.swift; sourceTree = "<group>"; };
 		596627D82B3BE9D500DD7E1A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		596627DF2B3BEBC700DD7E1A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		596627E12B3BEC9500DD7E1A /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 				596627E32B3BECCE00DD7E1A /* EmailView.swift */,
 				59DB05A82B3D320300E786CB /* RefreshButton.swift */,
 				59DB05AD2B3D36D900E786CB /* NewEmailView.swift */,
-				595E33302B3E025500A55250 /* MailboxView.swift */,
+				595E33302B3E025500A55250 /* SharedMailboxView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -115,6 +117,7 @@
 				59DB05862B3CE9E600E786CB /* MailManager.swift */,
 				59DB05882B3D26DF00E786CB /* Email.swift */,
 				595E332E2B3D88A100A55250 /* IMAPFolder.swift */,
+				595E33322B3E04EE00A55250 /* SharedFolder.swift */,
 			);
 			path = Email;
 			sourceTree = "<group>";
@@ -199,7 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */,
-				595E33312B3E025500A55250 /* MailboxView.swift in Sources */,
+				595E33312B3E025500A55250 /* SharedMailboxView.swift in Sources */,
 				59DB05A92B3D320300E786CB /* RefreshButton.swift in Sources */,
 				59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */,
 				5975C3572B3BC135008CC39B /* ContentView.swift in Sources */,
@@ -211,6 +214,7 @@
 				5975C3552B3BC135008CC39B /* App.swift in Sources */,
 				59DB05892B3D26DF00E786CB /* Email.swift in Sources */,
 				59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */,
+				595E33332B3E04EE00A55250 /* SharedFolder.swift in Sources */,
 				5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct MailboxView: View {
+struct SharedMailboxView: View {
     @EnvironmentObject var mailManager: MailManager
-    @Binding var mailbox: [Email]
-    var name: String
-    var folder: IMAPFolder
+    @State var mailbox: [Email] = []
+    
+    var sharedFolder: SharedFolder
+    
     var body: some View {
         NavigationView {
             List {
@@ -26,17 +27,27 @@ struct MailboxView: View {
                 }
             }
             .listStyle(InsetListStyle())
+            .onAppear {
+                switch sharedFolder {
+                case .allInboxes:
+                    self.mailbox = mailManager.allInboxes
+                case .allDrafts:
+                    self.mailbox = mailManager.allDrafts
+                case .allSent:
+                    self.mailbox = mailManager.allSent
+                }
+            }
             .refreshable {
-                mailManager.fetchNewMail(folder)
+                mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
             }
             .task {
-                mailManager.fetchNewMail(folder)
+                mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
             }
             
             Text("Select an email")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationTitle(name)
+        .navigationTitle(sharedFolder.displayName)
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button(action: {}) {
@@ -57,13 +68,13 @@ struct MailboxView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                RefreshButton(folder).environmentObject(mailManager)
+                RefreshButton(sharedFolder.correspondingIMAPFolder).environmentObject(mailManager)
             }
         }
     }
 }
 
 #Preview {
-    MailboxView(mailbox: .constant(MailManager.shared.accounts.first!.inbox), name: "Inbox", folder: .inbox)
+    SharedMailboxView(sharedFolder: .allInboxes)
         .environmentObject(MailManager.shared)
 }

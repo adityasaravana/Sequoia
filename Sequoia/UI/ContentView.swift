@@ -14,12 +14,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(selection: self.$selection) {
-                NavigationLink(destination: InboxView().environmentObject(mailManager)) {
-                    Label("Inbox", systemImage: "tray")
+                NavigationLink(destination: SharedMailboxView(sharedFolder: .allInboxes).environmentObject(mailManager)) {
+                    Label("All Inboxes", systemImage: "tray.2")
                 }
                 .tag(0)
-                Label("Sent", systemImage: "paperplane")
-                Label("Trash", systemImage: "trash")
+                NavigationLink(destination: SharedMailboxView(sharedFolder: .allDrafts).environmentObject(mailManager)) {
+                    Label("All Drafts", systemImage: "doc.on.doc")
+                }
+                NavigationLink(destination: SharedMailboxView(sharedFolder: .allSent).environmentObject(mailManager)) {
+                    Label("All Sent", systemImage: "paperplane")
+                }
             }
             .listStyle(SidebarListStyle())
             .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, maxHeight: .infinity)
