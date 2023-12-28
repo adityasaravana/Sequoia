@@ -15,6 +15,10 @@ class Account: ObservableObject {
     var imap: MCOIMAPSession
     
     @Published var inbox: [Email] = []
+    @Published var drafts: [Email] = []
+    @Published var sent: [Email] = []
+    @Published var junk: [Email] = []
+    @Published var trash: [Email] = []
     
     init(_ server: EmailServer, username: String, password: String) {
         self.server = server
@@ -28,6 +32,8 @@ class Account: ObservableObject {
         self.imap.password = password
         self.imap.connectionType = .TLS
     }
+    
+    
     
     func fetchFolder(_ folder: String = "INBOX") {
         let uids = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
