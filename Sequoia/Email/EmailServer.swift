@@ -24,13 +24,6 @@ enum EmailServer {
         }
     }
     
-    var smtpHostname: String {
-        switch self {
-        case .icloud:
-            "smtp.mail.me.com"
-        }
-    }
-    
     var displayName: String {
         switch self {
         case .icloud:
