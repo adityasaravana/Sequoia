@@ -7,15 +7,20 @@
 
 import Foundation
 import MailCore
+import SwiftSMTP
 
 class PostalService: ObservableObject {
     var server: EmailServer
     var username: String
     var password: String
-    var session: MCOIMAPSession
+    var imap: MCOIMAPSession
+    var smtp: SMTP
     var mailManager: MailManager = MailManager.shared
     var mailbox: Mailbox
-    
+        
+    func send(_ mail: Mail) {
+        smtp.send(mail)
+    }
     
     init(_ mailbox: Mailbox, server: EmailServer, username: String, password: String) {
         self.server = server
@@ -23,16 +28,18 @@ class PostalService: ObservableObject {
         self.password = password
         self.mailbox = mailbox
         
-        session = MCOIMAPSession()
-        session.hostname = server.hostname
-        session.port     = server.port
-        session.username = username
-        session.password = password
-        session.connectionType = .TLS
+        imap = MCOIMAPSession()
+        imap.hostname = server.imapHostname
+        imap.port     = server.port
+        imap.username = username
+        imap.password = password
+        imap.connectionType = .TLS
+        
+        self.smtp = SMTP(hostname: server.smtpHostname, email: username, password: password)
     }
     
     func fetchEmailContent(of email: Email, folder: String = "INBOX") {
-        let operation = session.fetchMessageOperation(withFolder: folder, uid: email.id)
+        let operation = imap.fetchMessageOperation(withFolder: folder, uid: email.id)
         operation?.start { error, data in
             if let error = error {
                 
@@ -51,7 +58,7 @@ class PostalService: ObservableObject {
     func fetch(_ folder: EmailFolder) {
         let uids = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
         
-        if let fetchOperation = session.fetchMessagesOperation(withFolder: folder.name, requestKind: .headers, uids: uids) {
+        if let fetchOperation = imap.fetchMessagesOperation(withFolder: folder.name, requestKind: .headers, uids: uids) {
             fetchOperation.start { error, fetchedMessages, vanishedMessages in
                 // We've finished downloading the messages!
                 

@@ -1,6 +1,33 @@
 {
   "pins" : [
     {
+      "identity" : "bluecryptor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/BlueCryptor.git",
+      "state" : {
+        "revision" : "cec97c24b111351e70e448972a7d3fe68a756d6d",
+        "version" : "2.0.2"
+      }
+    },
+    {
+      "identity" : "bluesocket",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/BlueSocket.git",
+      "state" : {
+        "revision" : "7b23a867008e0027bfd6f4d398d44720707bc8ca",
+        "version" : "2.0.4"
+      }
+    },
+    {
+      "identity" : "bluesslservice",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/BlueSSLService.git",
+      "state" : {
+        "revision" : "b27a94d063962dfa1bba9f79814c4ef202cf33a4",
+        "version" : "2.0.2"
+      }
+    },
+    {
       "identity" : "defaults",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults.git",
@@ -10,12 +37,39 @@
       }
     },
     {
+      "identity" : "loggerapi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/LoggerAPI.git",
+      "state" : {
+        "revision" : "e82d34eab3f0b05391082b11ea07d3b70d2f65bb",
+        "version" : "1.9.200"
+      }
+    },
+    {
       "identity" : "mailcorespm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vincedev/MailCoreSPM.git",
       "state" : {
         "branch" : "master",
         "revision" : "d55d1742a34e2b15d2fac01c14898b19946c74c5"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "532d8b529501fb73a2455b179e0bbb6d49b652ed",
+        "version" : "1.5.3"
+      }
+    },
+    {
+      "identity" : "swift-smtp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Kitura/Swift-SMTP.git",
+      "state" : {
+        "revision" : "4b7666bb8cee33f0cb367786af17b9a2ebb63047",
+        "version" : "6.0.0"
       }
     },
     {

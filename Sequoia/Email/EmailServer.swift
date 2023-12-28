@@ -20,12 +20,21 @@ enum EmailServer {
         }
     }
     
-    var hostname: String {
+    var imapHostname: String {
         switch self {
         case .gmail:
             return "imap.gmail.com"
         case .icloud:
             return "imap.mail.me.com"
+        }
+    }
+    
+    var smtpHostname: String {
+        switch self {
+        case .gmail:
+            "smtp.gmail.com"
+        case .icloud:
+            "smtp.mail.me.com"
         }
     }
     

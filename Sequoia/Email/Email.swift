@@ -22,5 +22,4 @@ class Email {
         
         self.mailbox.postalService.fetchEmailContent(of: self)
     }
-    
 }

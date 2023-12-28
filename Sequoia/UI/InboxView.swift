@@ -52,6 +52,10 @@ struct InboxView: View {
                     Image(systemName: "trash")
                 }
             }
+            
+            ToolbarItem(placement: .principal) {
+                RefreshButton().environmentObject(mailManager)
+            }
         }
     }
 }

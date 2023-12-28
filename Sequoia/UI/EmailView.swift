@@ -18,7 +18,7 @@ struct EmailView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                    WebView(htmlString: email.body)
+                WebView(htmlString: email.body)
                 
                 Spacer()
             }
