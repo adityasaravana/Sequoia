@@ -53,15 +53,3 @@ enum EmailServer {
         }
     }
 }
-
-
-
-enum IMAPFolder {
-    case inbox
-    case drafts
-    case archive
-    case sent
-    case junk
-    case deleted
-    case custom(name: String)
-}

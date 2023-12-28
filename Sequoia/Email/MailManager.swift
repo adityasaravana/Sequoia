@@ -32,4 +32,12 @@ class MailManager: ObservableObject {
     func aggregateInboxes() {
         allInboxes = accounts.flatMap { $0.inbox }
     }
+    
+    func aggregateSent() {
+        allSent = accounts.flatMap { $0.sent }
+    }
+    
+    func aggregateDrafts() {
+        allDrafts = accounts.flatMap { $0.drafts }
+    }
 }

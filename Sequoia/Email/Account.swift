@@ -127,7 +127,14 @@ class Account: ObservableObject {
                         
                     }
                     
-                    MailManager.shared.aggregateInboxes()
+                    if folder == .inbox {
+                        MailManager.shared.aggregateInboxes()
+                    } else if folder == .drafts {
+                        MailManager.shared.aggregateDrafts()
+                    } else if folder == .sent {
+                        MailManager.shared.aggregateSent()
+                    }
+                    
                 }
             }
         }
