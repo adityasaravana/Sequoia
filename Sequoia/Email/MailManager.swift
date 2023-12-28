@@ -17,19 +17,15 @@ class MailManager: ObservableObject {
         
     }
     
-    @Published var mailboxes: [Mailbox] = [
+    @Published var accounts: [Account] = [
         
     ]
     
     func fetch() {
-        Task {
-            for mailbox in self.mailboxes {
-                mailbox.refresh()
-            }
-        }
+        
     }
     
     func aggregateInboxes() {
-        allInboxes = mailboxes.flatMap { $0.inbox }
+        
     }
 }

@@ -14,7 +14,7 @@ struct SequoiaApp: App {
             ContentView()
                 .environmentObject(MailManager.shared)
                 .onAppear {
-                    MailManager.shared.mailboxes.append(Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
+                    MailManager.shared.accounts.append(Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
                 }
         }
     }

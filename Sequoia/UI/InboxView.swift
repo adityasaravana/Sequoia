@@ -12,7 +12,7 @@ struct InboxView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(mailManager.allInboxes) { email in
+                ForEach(mailManager.accounts.first!.inbox) { email in
                     NavigationLink(destination: EmailView(email: email).environmentObject(mailManager)) {
                         VStack(alignment: .leading) {
                             Text(email.message.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)

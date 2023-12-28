@@ -10,9 +10,6 @@ import MailCore
 import WebViewKit
 
 struct EmailView: View {
-    @EnvironmentObject var postalService: PostalService
-    @State var messageBody: String = "Loading body..."
-    
     var email: Email
     
     var body: some View {

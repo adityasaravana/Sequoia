@@ -9,43 +9,35 @@
 /* Begin PBXBuildFile section */
 		596627D72B3BD10200DD7E1A /* MailCore in Frameworks */ = {isa = PBXBuildFile; productRef = 596627D62B3BD10200DD7E1A /* MailCore */; };
 		596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627D82B3BE9D500DD7E1A /* Extensions.swift */; };
-		596627DC2B3BEB2400DD7E1A /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 596627DB2B3BEB2400DD7E1A /* Defaults */; };
-		596627DE2B3BEB2E00DD7E1A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DD2B3BEB2E00DD7E1A /* Defaults.swift */; };
 		596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DF2B3BEBC700DD7E1A /* Constants.swift */; };
 		596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E12B3BEC9500DD7E1A /* InboxView.swift */; };
 		596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E32B3BECCE00DD7E1A /* EmailView.swift */; };
-		596627E62B3C0B8B00DD7E1A /* Mailbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E52B3C0B8B00DD7E1A /* Mailbox.swift */; };
+		596627E62B3C0B8B00DD7E1A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E52B3C0B8B00DD7E1A /* Account.swift */; };
 		5975C3552B3BC135008CC39B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3542B3BC135008CC39B /* App.swift */; };
 		5975C3572B3BC135008CC39B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3562B3BC135008CC39B /* ContentView.swift */; };
 		5975C3592B3BC136008CC39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C3582B3BC136008CC39B /* Assets.xcassets */; };
 		5975C35C2B3BC136008CC39B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C35B2B3BC136008CC39B /* Preview Assets.xcassets */; };
-		5975C36C2B3BC582008CC39B /* PostalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C36B2B3BC582008CC39B /* PostalService.swift */; };
 		5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C36D2B3BC761008CC39B /* EmailServer.swift */; };
-		59DB05852B3CE82500E786CB /* EmailFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05842B3CE82500E786CB /* EmailFolder.swift */; };
 		59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05862B3CE9E600E786CB /* MailManager.swift */; };
 		59DB05892B3D26DF00E786CB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05882B3D26DF00E786CB /* Email.swift */; };
 		59DB058C2B3D2D7600E786CB /* WebViewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 59DB058B2B3D2D7600E786CB /* WebViewKit */; };
 		59DB05A92B3D320300E786CB /* RefreshButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05A82B3D320300E786CB /* RefreshButton.swift */; };
-		59DB05AC2B3D338D00E786CB /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = 59DB05AB2B3D338D00E786CB /* SwiftSMTP */; };
 		59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05AD2B3D36D900E786CB /* NewEmailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		596627D82B3BE9D500DD7E1A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		596627DD2B3BEB2E00DD7E1A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		596627DF2B3BEBC700DD7E1A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		596627E12B3BEC9500DD7E1A /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		596627E32B3BECCE00DD7E1A /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
-		596627E52B3C0B8B00DD7E1A /* Mailbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailbox.swift; sourceTree = "<group>"; };
+		596627E52B3C0B8B00DD7E1A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5975C3512B3BC135008CC39B /* Sequoia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sequoia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975C3542B3BC135008CC39B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		5975C3562B3BC135008CC39B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5975C3582B3BC136008CC39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5975C35B2B3BC136008CC39B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5975C35D2B3BC136008CC39B /* Sequoia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sequoia.entitlements; sourceTree = "<group>"; };
-		5975C36B2B3BC582008CC39B /* PostalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostalService.swift; sourceTree = "<group>"; };
 		5975C36D2B3BC761008CC39B /* EmailServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServer.swift; sourceTree = "<group>"; };
-		59DB05842B3CE82500E786CB /* EmailFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFolder.swift; sourceTree = "<group>"; };
 		59DB05862B3CE9E600E786CB /* MailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailManager.swift; sourceTree = "<group>"; };
 		59DB05882B3D26DF00E786CB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		59DB05A82B3D320300E786CB /* RefreshButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshButton.swift; sourceTree = "<group>"; };
@@ -58,8 +50,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				59DB058C2B3D2D7600E786CB /* WebViewKit in Frameworks */,
-				596627DC2B3BEB2400DD7E1A /* Defaults in Frameworks */,
-				59DB05AC2B3D338D00E786CB /* SwiftSMTP in Frameworks */,
 				596627D72B3BD10200DD7E1A /* MailCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,9 +60,8 @@
 		5975C3482B3BC135008CC39B = {
 			isa = PBXGroup;
 			children = (
-				596627DF2B3BEBC700DD7E1A /* Constants.swift */,
-				596627DD2B3BEB2E00DD7E1A /* Defaults.swift */,
 				596627D82B3BE9D500DD7E1A /* Extensions.swift */,
+				596627DF2B3BEBC700DD7E1A /* Constants.swift */,
 				5975C36A2B3BC4F4008CC39B /* Email */,
 				5975C3692B3BC4B3008CC39B /* UI */,
 				5975C3542B3BC135008CC39B /* App.swift */,
@@ -114,10 +103,8 @@
 		5975C36A2B3BC4F4008CC39B /* Email */ = {
 			isa = PBXGroup;
 			children = (
-				5975C36B2B3BC582008CC39B /* PostalService.swift */,
 				5975C36D2B3BC761008CC39B /* EmailServer.swift */,
-				59DB05842B3CE82500E786CB /* EmailFolder.swift */,
-				596627E52B3C0B8B00DD7E1A /* Mailbox.swift */,
+				596627E52B3C0B8B00DD7E1A /* Account.swift */,
 				59DB05862B3CE9E600E786CB /* MailManager.swift */,
 				59DB05882B3D26DF00E786CB /* Email.swift */,
 			);
@@ -142,9 +129,7 @@
 			name = Sequoia;
 			packageProductDependencies = (
 				596627D62B3BD10200DD7E1A /* MailCore */,
-				596627DB2B3BEB2400DD7E1A /* Defaults */,
 				59DB058B2B3D2D7600E786CB /* WebViewKit */,
-				59DB05AB2B3D338D00E786CB /* SwiftSMTP */,
 			);
 			productName = Sequoia;
 			productReference = 5975C3512B3BC135008CC39B /* Sequoia.app */;
@@ -176,9 +161,7 @@
 			mainGroup = 5975C3482B3BC135008CC39B;
 			packageReferences = (
 				596627D52B3BD10200DD7E1A /* XCRemoteSwiftPackageReference "MailCoreSPM" */,
-				596627DA2B3BEB2400DD7E1A /* XCRemoteSwiftPackageReference "Defaults" */,
 				59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */,
-				59DB05AA2B3D338D00E786CB /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
 			);
 			productRefGroup = 5975C3522B3BC135008CC39B /* Products */;
 			projectDirPath = "";
@@ -208,14 +191,11 @@
 			files = (
 				596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */,
 				59DB05A92B3D320300E786CB /* RefreshButton.swift in Sources */,
-				5975C36C2B3BC582008CC39B /* PostalService.swift in Sources */,
 				59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */,
 				5975C3572B3BC135008CC39B /* ContentView.swift in Sources */,
 				596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */,
-				596627DE2B3BEB2E00DD7E1A /* Defaults.swift in Sources */,
-				596627E62B3C0B8B00DD7E1A /* Mailbox.swift in Sources */,
+				596627E62B3C0B8B00DD7E1A /* Account.swift in Sources */,
 				596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */,
-				59DB05852B3CE82500E786CB /* EmailFolder.swift in Sources */,
 				596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */,
 				5975C3552B3BC135008CC39B /* App.swift in Sources */,
 				59DB05892B3D26DF00E786CB /* Email.swift in Sources */,
@@ -444,28 +424,12 @@
 				kind = branch;
 			};
 		};
-		596627DA2B3BEB2400DD7E1A /* XCRemoteSwiftPackageReference "Defaults" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Defaults.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/WebViewKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.3.0;
-			};
-		};
-		59DB05AA2B3D338D00E786CB /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Kitura/Swift-SMTP.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -476,20 +440,10 @@
 			package = 596627D52B3BD10200DD7E1A /* XCRemoteSwiftPackageReference "MailCoreSPM" */;
 			productName = MailCore;
 		};
-		596627DB2B3BEB2400DD7E1A /* Defaults */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 596627DA2B3BEB2400DD7E1A /* XCRemoteSwiftPackageReference "Defaults" */;
-			productName = Defaults;
-		};
 		59DB058B2B3D2D7600E786CB /* WebViewKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 59DB058A2B3D2D7600E786CB /* XCRemoteSwiftPackageReference "WebViewKit" */;
 			productName = WebViewKit;
-		};
-		59DB05AB2B3D338D00E786CB /* SwiftSMTP */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 59DB05AA2B3D338D00E786CB /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
-			productName = SwiftSMTP;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
