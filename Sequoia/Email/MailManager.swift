@@ -22,10 +22,12 @@ class MailManager: ObservableObject {
     ]
     
     func fetch() {
-        
+        for account in accounts {
+            account.fetchFolder()
+        }
     }
     
     func aggregateInboxes() {
-        
+        allInboxes = accounts.flatMap { $0.inbox }
     }
 }
