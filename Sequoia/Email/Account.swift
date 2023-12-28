@@ -52,7 +52,7 @@ class Account: ObservableObject {
 #endif
     }
     
-    func fetchNewMail() {
+    func fetchAllFolders() {
         fetchFolder(.inbox)
         fetchFolder(.archive)
         fetchFolder(.drafts)
@@ -79,7 +79,7 @@ class Account: ObservableObject {
             sent.removeAll()
         case .deleted:
             junk.removeAll()
-        case .custom(let name):
+        case .custom(_):
             for element in customFolders {
                 customFolders[element.key] = []
             }
@@ -101,10 +101,10 @@ class Account: ObservableObject {
                 // And, let's print out the messages:
                 print("The post man delivereth: \(fetchedMessages.debugDescription)")
                 if let messages = fetchedMessages {
-                    
+                    self.reset(folder)
                     for message in messages {
                         let email = Email.init(account: self, message: message)
-                        self.reset(folder)
+                        
                         switch folder {
                         case .inbox:
                             self.inbox.append(email)

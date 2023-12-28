@@ -24,10 +24,10 @@ struct InboxView: View {
             }
             .listStyle(InsetListStyle())
             .refreshable {
-                mailManager.fetchNewMail()
+                mailManager.fetchNewMail(.inbox)
             }
             .task {
-                mailManager.fetchNewMail()
+                mailManager.fetchNewMail(.inbox)
             }
             
             Text("Select an email")
@@ -54,7 +54,7 @@ struct InboxView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                RefreshButton().environmentObject(mailManager)
+                RefreshButton(.inbox).environmentObject(mailManager)
             }
         }
     }

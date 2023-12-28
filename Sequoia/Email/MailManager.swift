@@ -23,9 +23,9 @@ class MailManager: ObservableObject {
         
     ]
     
-    func fetchNewMail() {
+    func fetchNewMail(_ folder: IMAPFolder) {
         for account in accounts {
-            account.fetchNewMail()
+            account.fetchFolder(folder)
         }
     }
     

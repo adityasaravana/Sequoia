@@ -9,15 +9,17 @@ import SwiftUI
 
 struct RefreshButton: View {
     @EnvironmentObject var mailManager: MailManager
+    var folder: IMAPFolder
+    
+    init(_ folder: IMAPFolder) {
+        self.folder = folder
+    }
+    
     var body: some View {
         Button {
-            mailManager.fetchNewMail()
+            mailManager.fetchNewMail(folder)
         } label: {
             Image(systemName: "tray.and.arrow.down")
         }
     }
-}
-
-#Preview {
-    RefreshButton().environmentObject(MailManager.shared)
 }
