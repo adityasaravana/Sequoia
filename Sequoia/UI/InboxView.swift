@@ -24,10 +24,10 @@ struct InboxView: View {
             }
             .listStyle(InsetListStyle())
             .refreshable {
-                mailManager.fetch()
+                mailManager.fetchNewMail()
             }
             .task {
-                mailManager.fetch()
+                mailManager.fetchNewMail()
             }
             
             Text("Select an email")

@@ -17,8 +17,10 @@ class Account: ObservableObject {
     @Published var inbox: [Email] = []
     @Published var drafts: [Email] = []
     @Published var sent: [Email] = []
+    @Published var archive: [Email] = []
     @Published var junk: [Email] = []
     @Published var trash: [Email] = []
+    @Published var customFolders: [String : [Email]] = [:]
     
     init(_ server: EmailServer, username: String, password: String) {
         self.server = server
@@ -31,14 +33,63 @@ class Account: ObservableObject {
         self.imap.username = username
         self.imap.password = password
         self.imap.connectionType = .TLS
+        
+#if DEBUG
+        listIMAPFolders() { folders, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            
+            if let folders = folders {
+                for folder in folders {
+                    print("Folder: \(folder.path)")
+                }
+            } else {
+                print("No folders were found.")
+            }
+        }
+#endif
     }
     
+    func fetchNewMail() {
+        fetchFolder(.inbox)
+        fetchFolder(.archive)
+        fetchFolder(.drafts)
+        fetchFolder(.deleted)
+        fetchFolder(.sent)
+        fetchFolder(.junk)
+        
+        for element in customFolders {
+            fetchFolder(.custom(name: element.key))
+        }
+    }
     
+    func reset(_ folder: IMAPFolder) {
+        switch folder {
+        case .inbox:
+            inbox.removeAll()
+        case .drafts:
+            archive.removeAll()
+        case .archive:
+            drafts.removeAll()
+        case .sent:
+            trash.removeAll()
+        case .junk:
+            sent.removeAll()
+        case .deleted:
+            junk.removeAll()
+        case .custom(let name):
+            for element in customFolders {
+                customFolders[element.key] = []
+            }
+        }
+    }
     
-    func fetchFolder(_ folder: String = "INBOX") {
+    func fetchFolder(_ folder: IMAPFolder) {
         let uids = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
         
-        if let fetchOperation = imap.fetchMessagesOperation(withFolder: folder, requestKind: .headers, uids: uids) {
+        if let fetchOperation = imap.fetchMessagesOperation(withFolder: server.folderName(for: folder), requestKind: .headers, uids: uids) {
             fetchOperation.start { error, fetchedMessages, vanishedMessages in
                 // We've finished downloading the messages!
                 
@@ -53,12 +104,46 @@ class Account: ObservableObject {
                     
                     for message in messages {
                         let email = Email.init(account: self, message: message)
-                        self.inbox.append(email)
+                        self.reset(folder)
+                        switch folder {
+                        case .inbox:
+                            self.inbox.append(email)
+                        case .drafts:
+                            self.drafts.append(email)
+                        case .archive:
+                            self.archive.append(email)
+                        case .sent:
+                            self.sent.append(email)
+                        case .junk:
+                            self.junk.append(email)
+                        case .deleted:
+                            self.trash.append(email)
+                        case .custom(let name):
+                            if self.customFolders[name] == nil {
+                                self.customFolders[name] = []
+                            }
+                            self.customFolders[name]!.append(email)
+                        }
+                        
                     }
                     
                     MailManager.shared.aggregateInboxes()
                 }
             }
+        }
+    }
+}
+
+
+extension Account {
+    fileprivate func listIMAPFolders(completion: @escaping ([MCOIMAPFolder]?, Error?) -> Void) {
+        let fetchOperation = imap.fetchAllFoldersOperation()
+        fetchOperation?.start { (error, folders) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            completion(folders, nil)
         }
     }
 }

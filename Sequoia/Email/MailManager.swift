@@ -10,6 +10,8 @@ import MailCore
 
 class MailManager: ObservableObject {
     @Published var allInboxes: [Email] = []
+    @Published var allDrafts: [Email] = []
+    @Published var allSent: [Email] = []
     
     static let shared = MailManager()
     
@@ -21,9 +23,9 @@ class MailManager: ObservableObject {
         
     ]
     
-    func fetch() {
+    func fetchNewMail() {
         for account in accounts {
-            account.fetchFolder()
+            account.fetchNewMail()
         }
     }
     

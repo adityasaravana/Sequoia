@@ -8,13 +8,10 @@
 import Foundation
 
 enum EmailServer {
-    case gmail
     case icloud
     
     var port: UInt32 {
         switch self {
-        case .gmail:
-            return 993
         case .icloud:
             return 993
         }
@@ -22,8 +19,6 @@ enum EmailServer {
     
     var imapHostname: String {
         switch self {
-        case .gmail:
-            return "imap.gmail.com"
         case .icloud:
             return "imap.mail.me.com"
         }
@@ -31,12 +26,42 @@ enum EmailServer {
     
     var smtpHostname: String {
         switch self {
-        case .gmail:
-            "smtp.gmail.com"
         case .icloud:
             "smtp.mail.me.com"
         }
     }
     
-    
+    func folderName(for folder: IMAPFolder) -> String {
+        switch self {
+        case .icloud:
+            switch folder {
+            case .inbox:
+                return "INBOX"
+            case .drafts:
+                return "Drafts"
+            case .sent:
+                return "Sent Messages"
+            case .archive:
+                return "Archive"
+            case .junk:
+                return "Junk"
+            case .deleted:
+                return "Deleted Messages"
+            case .custom(let name):
+                return name // For custom folders
+            }
+        }
+    }
+}
+
+
+
+enum IMAPFolder {
+    case inbox
+    case drafts
+    case archive
+    case sent
+    case junk
+    case deleted
+    case custom(name: String)
 }

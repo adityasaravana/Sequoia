@@ -11,7 +11,7 @@ struct RefreshButton: View {
     @EnvironmentObject var mailManager: MailManager
     var body: some View {
         Button {
-            mailManager.fetch()
+            mailManager.fetchNewMail()
         } label: {
             Image(systemName: "tray.and.arrow.down")
         }
