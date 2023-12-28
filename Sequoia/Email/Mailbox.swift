@@ -15,7 +15,7 @@ class Mailbox: ObservableObject {
     var password: String
     
     var postalService: PostalService
-    var aggregateManager: (() -> Void)
+    var manager: MailManager
     
     @Published var inbox: [MCOIMAPMessage] = [] {
         didSet {
@@ -24,15 +24,15 @@ class Mailbox: ObservableObject {
     }
     
     func refresh() {
-        Task {
             inbox = postalService.fetch(.inbox) ?? []
-            
-            aggregateManager()
-        }
+            printDivider()
+            print(inbox)
+        manager.aggregateInboxes()
+        
     }
     
-    init(_ server: EmailServer, username: String, password: String, aggregateManager: @escaping (() -> Void)) {
-        self.aggregateManager = aggregateManager
+    init(_ server: EmailServer, username: String, password: String, manager: MailManager) {
+        self.manager = manager
         self.server = server
         self.username = username
         self.password = password

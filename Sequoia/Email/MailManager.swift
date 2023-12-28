@@ -24,9 +24,7 @@ class MailManager: ObservableObject {
     }
     
     private func setupMailboxes() {
-        let mailbox = Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd, aggregateManager: { [weak self] in
-            self?.aggregateInboxes()
-        })
+        let mailbox = Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd, manager: self)
         mailboxes.append(mailbox)
     }
     
@@ -38,7 +36,11 @@ class MailManager: ObservableObject {
         }
     }
     
-    private func aggregateInboxes() {
+    func aggregateInboxes() {
         allInboxes = mailboxes.flatMap { $0.inbox }
+        printDivider()
+        print(mailboxes.flatMap { $0.inbox })
+        printDivider()
+        print(allInboxes)
     }
 }
