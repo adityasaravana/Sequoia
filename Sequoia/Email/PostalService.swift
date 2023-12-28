@@ -14,6 +14,7 @@ class PostalService: ObservableObject {
     var username: String
     var password: String
     var session: MCOIMAPSession
+    var mailManager: MailManager = MailManager.shared
     
     
     
@@ -65,6 +66,7 @@ class PostalService: ObservableObject {
                 if let messages = fetchedMessages {
                     returnVal = messages
                 }
+                self.mailManager.aggregateInboxes()
             }
         }
         

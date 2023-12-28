@@ -11,22 +11,11 @@ import MailCore
 class MailManager: ObservableObject {
     @Published var allInboxes: [MCOIMAPMessage] = []
     
-    static let shared: MailManager = {
-        let instance = MailManager()
-        // setup code
-        return instance
-    }()
+    static let shared = MailManager()
     
-    @Published var mailboxes: [Mailbox] = []
-    
-    init() {
-        setupMailboxes()
-    }
-    
-    private func setupMailboxes() {
-        let mailbox = Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd, manager: self)
-        mailboxes.append(mailbox)
-    }
+    @Published var mailboxes: [Mailbox] = [
+        Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd)
+    ]
     
     func fetch() {
         Task {
@@ -38,9 +27,5 @@ class MailManager: ObservableObject {
     
     func aggregateInboxes() {
         allInboxes = mailboxes.flatMap { $0.inbox }
-        printDivider()
-        print(mailboxes.flatMap { $0.inbox })
-        printDivider()
-        print(allInboxes)
     }
 }
