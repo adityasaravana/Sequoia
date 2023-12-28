@@ -13,8 +13,12 @@ class MailManager: ObservableObject {
     
     static let shared = MailManager()
     
+    init() {
+        
+    }
+    
     @Published var mailboxes: [Mailbox] = [
-        Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd)
+        
     ]
     
     func fetch() {

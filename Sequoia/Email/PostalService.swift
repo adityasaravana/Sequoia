@@ -15,13 +15,14 @@ class PostalService: ObservableObject {
     var password: String
     var session: MCOIMAPSession
     var mailManager: MailManager = MailManager.shared
+    var mailbox: Mailbox
     
     
-    
-    init(server: EmailServer, username: String, password: String) {
+    init(_ mailbox: Mailbox, server: EmailServer, username: String, password: String) {
         self.server = server
         self.username = username
         self.password = password
+        self.mailbox = mailbox
         
         session = MCOIMAPSession()
         session.hostname = server.hostname
@@ -48,9 +49,8 @@ class PostalService: ObservableObject {
             }
         }
     
-    func fetch(_ folder: EmailFolder) -> [MCOIMAPMessage]? {
+    func fetch(_ folder: EmailFolder) {
         let uids = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
-        var returnVal: [MCOIMAPMessage]? = nil
         
         if let fetchOperation = session.fetchMessagesOperation(withFolder: folder.name, requestKind: .headers, uids: uids) {
             fetchOperation.start { error, fetchedMessages, vanishedMessages in
@@ -64,12 +64,15 @@ class PostalService: ObservableObject {
                 // And, let's print out the messages:
                 print("The post man delivereth: \(fetchedMessages.debugDescription)")
                 if let messages = fetchedMessages {
-                    returnVal = messages
+                    switch folder {
+                    case .inbox:
+                        self.mailbox.inbox = messages
+                        MailManager.shared.aggregateInboxes()
+                    }
                 }
-                self.mailManager.aggregateInboxes()
+                
+                
             }
         }
-        
-        return returnVal
     }
 }

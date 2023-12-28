@@ -11,7 +11,11 @@ import SwiftUI
 struct SequoiaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(MailManager.shared)
+            ContentView()
+                .environmentObject(MailManager.shared)
+                .onAppear {
+                    MailManager.shared.mailboxes.append(Mailbox(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
+                }
         }
     }
 }
