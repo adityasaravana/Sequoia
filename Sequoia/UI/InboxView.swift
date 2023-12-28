@@ -13,13 +13,13 @@ struct InboxView: View {
         NavigationView {
             List {
                 ForEach(mailManager.allInboxes) { email in
-                    NavigationLink(destination: EmailView(message: email).environmentObject(mailManager)) {
+                    NavigationLink(destination: EmailView(email: email).environmentObject(mailManager)) {
                         VStack(alignment: .leading) {
-                            Text(email.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
-                            Text(email.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
+                            Text(email.message.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
+                            Text(email.message.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
                         }
                         .padding(.vertical, 8)
-                    }
+                    }.drawingGroup()
                 }
             }
             .listStyle(InsetListStyle())

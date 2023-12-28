@@ -9,7 +9,7 @@ import Foundation
 import MailCore
 
 class MailManager: ObservableObject {
-    @Published var allInboxes: [MCOIMAPMessage] = []
+    @Published var allInboxes: [Email] = []
     
     static let shared = MailManager()
     

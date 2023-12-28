@@ -9,7 +9,6 @@ import Foundation
 import MailCore
 
 class PostalService: ObservableObject {
-    
     var server: EmailServer
     var username: String
     var password: String
@@ -33,21 +32,21 @@ class PostalService: ObservableObject {
     }
     
     func fetchEmailContent(of message: MCOIMAPMessage, folder: String = "INBOX", completion: @escaping (String?, Error?) -> Void) {
-            let operation = session.fetchMessageOperation(withFolder: folder, uid: message.uid)
-            operation?.start { error, data in
-                if let error = error {
-                    completion(nil, error)
-                } else if let data = data, let messageParser = MCOMessageParser(data: data) {
-                    let htmlBody = messageParser.htmlBodyRendering()
-                    let plainTextBody = messageParser.plainTextBodyRendering()
-                    
-                    // You can choose to return either HTML or plain text
-                    completion(htmlBody ?? plainTextBody, nil)
-                } else {
-                    completion(nil, NSError(domain: "PostalServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse message content."]))
-                }
+        let operation = session.fetchMessageOperation(withFolder: folder, uid: message.uid)
+        operation?.start { error, data in
+            if let error = error {
+                completion(nil, error)
+            } else if let data = data, let messageParser = MCOMessageParser(data: data) {
+                let htmlBody = messageParser.htmlBodyRendering()
+                let plainTextBody = messageParser.plainTextBodyRendering()
+                
+                // You can choose to return either HTML or plain text
+                completion(htmlBody ?? plainTextBody, nil)
+            } else {
+                completion(nil, NSError(domain: "PostalServiceError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse message content."]))
             }
         }
+    }
     
     func fetch(_ folder: EmailFolder) {
         let uids = MCOIndexSet(range: MCORange(location: 1, length: UInt64.max))
@@ -66,12 +65,12 @@ class PostalService: ObservableObject {
                 if let messages = fetchedMessages {
                     switch folder {
                     case .inbox:
-                        self.mailbox.inbox = messages
+                        for message in messages {
+                            self.mailbox.inbox.append(.init(mailbox: self.mailbox, message: message))
+                        }
                         MailManager.shared.aggregateInboxes()
                     }
                 }
-                
-                
             }
         }
     }

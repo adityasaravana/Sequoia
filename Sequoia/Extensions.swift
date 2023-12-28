@@ -13,3 +13,4 @@ public func printDivider() {
 }
 
 extension MCOIMAPMessage: Identifiable {}
+extension Email: Identifiable {}

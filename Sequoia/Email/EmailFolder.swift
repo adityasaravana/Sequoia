@@ -14,6 +14,7 @@ enum EmailFolder {
         switch self {
         case .inbox:
             return "INBOX"
+            
         }
     }
     

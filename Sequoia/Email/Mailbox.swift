@@ -16,9 +16,9 @@ class Mailbox: ObservableObject {
     
     var postalService: PostalService!
     
-    @Published var inbox: [MCOIMAPMessage] = [] {
+    @Published var inbox: [Email] = [] {
         didSet {
-            // update inbox
+            // update
         }
     }
     

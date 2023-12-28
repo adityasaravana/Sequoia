@@ -26,20 +26,22 @@ struct EmailView: View {
     @EnvironmentObject var postalService: PostalService
     @State var messageBody: String = "Loading body..."
     
-    var message: MCOIMAPMessage
+    var email: Email
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 ScrollView {
-                    HTMLStringView(htmlContent: messageBody).task {
-                        postalService.fetchEmailContent(of: message) { content, error in
-                            if let error = error {
-                                messageBody = "Error fetching email content: \(error)"
-                            } else if let content = content {
-                                messageBody = content
-                            }
-                        }
-                    }
+//                    HTMLStringView(htmlContent: messageBody).task {
+//                        postalService.fetchEmailContent(of: message) { content, error in
+//                            if let error = error {
+//                                messageBody = "Error fetching email content: \(error)"
+//                            } else if let content = content {
+//                                messageBody = content
+//                            }
+//                        }
+//                    }
+                    Text(email.message.debugDescription).drawingGroup()
                 }
                 Spacer()
             }

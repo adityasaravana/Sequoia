@@ -23,6 +23,7 @@
 		5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C36D2B3BC761008CC39B /* EmailServer.swift */; };
 		59DB05852B3CE82500E786CB /* EmailFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05842B3CE82500E786CB /* EmailFolder.swift */; };
 		59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05862B3CE9E600E786CB /* MailManager.swift */; };
+		59DB05892B3D26DF00E786CB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05882B3D26DF00E786CB /* Email.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		5975C36F2B3BCB7F008CC39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59DB05842B3CE82500E786CB /* EmailFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFolder.swift; sourceTree = "<group>"; };
 		59DB05862B3CE9E600E786CB /* MailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailManager.swift; sourceTree = "<group>"; };
+		59DB05882B3D26DF00E786CB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				59DB05842B3CE82500E786CB /* EmailFolder.swift */,
 				596627E52B3C0B8B00DD7E1A /* Mailbox.swift */,
 				59DB05862B3CE9E600E786CB /* MailManager.swift */,
+				59DB05882B3D26DF00E786CB /* Email.swift */,
 			);
 			path = Email;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				59DB05852B3CE82500E786CB /* EmailFolder.swift in Sources */,
 				596627E22B3BEC9500DD7E1A /* InboxView.swift in Sources */,
 				5975C3552B3BC135008CC39B /* App.swift in Sources */,
+				59DB05892B3D26DF00E786CB /* Email.swift in Sources */,
 				59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */,
 				5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */,
 			);
@@ -332,6 +336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Sequoia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -364,6 +369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Sequoia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
