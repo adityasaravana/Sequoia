@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MailView: View {
     @EnvironmentObject var mailManager: MailManager
     @State var selection: Set<Int> = [0]
     
@@ -64,7 +64,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MailView()
         .environmentObject(MailManager())
         .onAppear {
             MailManager.shared.accounts.append(Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd))

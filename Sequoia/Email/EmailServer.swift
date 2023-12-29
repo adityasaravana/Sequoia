@@ -9,11 +9,17 @@ import Foundation
 
 enum EmailServer {
     case icloud
+    case gmail
+    case custom(config: CustomEmailServerConfiguration)
     
     var port: UInt32 {
         switch self {
         case .icloud:
             return 993
+        case .gmail:
+            return 993
+        case .custom(config: let config):
+            return config.port
         }
     }
     
@@ -21,6 +27,10 @@ enum EmailServer {
         switch self {
         case .icloud:
             return "imap.mail.me.com"
+        case .gmail:
+            return "imap.gmail.com"
+        case .custom(config: let config):
+            return config.imapHostname
         }
     }
     
@@ -28,6 +38,10 @@ enum EmailServer {
         switch self {
         case .icloud:
             return "iCloud"
+        case .gmail:
+            return "Gmail"
+        case .custom(config: let config):
+            return config.displayName
         }
     }
     
@@ -50,6 +64,59 @@ enum EmailServer {
             case .custom(let name):
                 return name // For custom folders
             }
+            
+            
+            //Folder: Optional("INBOX")
+            //Folder: Optional("[Gmail]")
+            //Folder: Optional("[Gmail]/All Mail")
+            //Folder: Optional("[Gmail]/Drafts")
+            //Folder: Optional("[Gmail]/Important")
+            //Folder: Optional("[Gmail]/Sent Mail")
+            //Folder: Optional("[Gmail]/Spam")
+            //Folder: Optional("[Gmail]/Starred")
+            //Folder: Optional("[Gmail]/Trash")
+
+        case .gmail:
+            switch folder {
+            case .inbox:
+                return "INBOX"
+            case .drafts:
+                return "[Gmail]/Drafts"
+            case .sent:
+                return "[Gmail]/Sent Mail"
+            case .archive:
+                return "[Gmail]/All Mail"
+            case .junk:
+                return "[Gmail]/Spam"
+            case .deleted:
+                return "[Gmail]/Trash"
+            case .custom(let name):
+                return name // For custom folders
+            }
+        case .custom(config: let config):
+            switch folder {
+            case .inbox:
+                return "INBOX"
+            case .drafts:
+                return ""
+            case .sent:
+                return ""
+            case .archive:
+                return ""
+            case .junk:
+                return ""
+            case .deleted:
+                return ""
+            case .custom(let name):
+                return name // For custom folders
+            }
         }
     }
+    
+    struct CustomEmailServerConfiguration {
+        var imapHostname: String
+        var port: UInt32
+        var displayName: String
+    }
 }
+

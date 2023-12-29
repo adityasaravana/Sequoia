@@ -15,6 +15,8 @@ class Account: ObservableObject, Identifiable {
     var password: String
     var imap: MCOIMAPSession
     
+    
+    
     @Published var inbox: [Email] = []
     @Published var drafts: [Email] = []
     @Published var sent: [Email] = []

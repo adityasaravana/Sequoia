@@ -18,14 +18,15 @@
 		596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E32B3BECCE00DD7E1A /* EmailView.swift */; };
 		596627E62B3C0B8B00DD7E1A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E52B3C0B8B00DD7E1A /* Account.swift */; };
 		5975C3552B3BC135008CC39B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3542B3BC135008CC39B /* App.swift */; };
-		5975C3572B3BC135008CC39B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3562B3BC135008CC39B /* ContentView.swift */; };
+		5975C3572B3BC135008CC39B /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3562B3BC135008CC39B /* MailView.swift */; };
 		5975C3592B3BC136008CC39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C3582B3BC136008CC39B /* Assets.xcassets */; };
 		5975C35C2B3BC136008CC39B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C35B2B3BC136008CC39B /* Preview Assets.xcassets */; };
 		5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C36D2B3BC761008CC39B /* EmailServer.swift */; };
-		59CA2E242B3E0E39006F2BB9 /* CustomFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CA2E232B3E0E39006F2BB9 /* CustomFolder.swift */; };
 		59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05862B3CE9E600E786CB /* MailManager.swift */; };
 		59DB05892B3D26DF00E786CB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05882B3D26DF00E786CB /* Email.swift */; };
 		59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05AD2B3D36D900E786CB /* NewEmailView.swift */; };
+		59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */; };
+		59F33D6E2B3E725000F03C72 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6D2B3E725000F03C72 /* Folder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,15 +40,16 @@
 		596627E52B3C0B8B00DD7E1A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5975C3512B3BC135008CC39B /* Sequoia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sequoia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975C3542B3BC135008CC39B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		5975C3562B3BC135008CC39B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5975C3562B3BC135008CC39B /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		5975C3582B3BC136008CC39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5975C35B2B3BC136008CC39B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5975C35D2B3BC136008CC39B /* Sequoia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sequoia.entitlements; sourceTree = "<group>"; };
 		5975C36D2B3BC761008CC39B /* EmailServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServer.swift; sourceTree = "<group>"; };
-		59CA2E232B3E0E39006F2BB9 /* CustomFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFolder.swift; sourceTree = "<group>"; };
 		59DB05862B3CE9E600E786CB /* MailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailManager.swift; sourceTree = "<group>"; };
 		59DB05882B3D26DF00E786CB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		59DB05AD2B3D36D900E786CB /* NewEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEmailView.swift; sourceTree = "<group>"; };
+		59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
+		59F33D6D2B3E725000F03C72 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +99,10 @@
 		5975C3692B3BC4B3008CC39B /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5975C3562B3BC135008CC39B /* ContentView.swift */,
+				5975C3562B3BC135008CC39B /* MailView.swift */,
 				59DB05AD2B3D36D900E786CB /* NewEmailView.swift */,
 				596627E32B3BECCE00DD7E1A /* EmailView.swift */,
+				59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */,
 				595E33302B3E025500A55250 /* SharedMailboxView.swift */,
 				595E33342B3E084E00A55250 /* AccountMailboxView.swift */,
 			);
@@ -115,7 +118,7 @@
 				59DB05882B3D26DF00E786CB /* Email.swift */,
 				595E332E2B3D88A100A55250 /* IMAPFolder.swift */,
 				595E33322B3E04EE00A55250 /* SharedFolder.swift */,
-				59CA2E232B3E0E39006F2BB9 /* CustomFolder.swift */,
+				59F33D6D2B3E725000F03C72 /* Folder.swift */,
 			);
 			path = Email;
 			sourceTree = "<group>";
@@ -198,13 +201,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */,
+				59F33D6E2B3E725000F03C72 /* Folder.swift in Sources */,
 				595E33312B3E025500A55250 /* SharedMailboxView.swift in Sources */,
 				59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */,
-				5975C3572B3BC135008CC39B /* ContentView.swift in Sources */,
+				5975C3572B3BC135008CC39B /* MailView.swift in Sources */,
 				596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */,
 				596627E62B3C0B8B00DD7E1A /* Account.swift in Sources */,
+				59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */,
 				595E332F2B3D88A100A55250 /* IMAPFolder.swift in Sources */,
-				59CA2E242B3E0E39006F2BB9 /* CustomFolder.swift in Sources */,
 				596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */,
 				5975C3552B3BC135008CC39B /* App.swift in Sources */,
 				59DB05892B3D26DF00E786CB /* Email.swift in Sources */,

@@ -48,7 +48,6 @@ struct AccountMailboxView: View {
             .refreshable {
                 account.fetchFolder(folder)
                 updateEmails()
-                
             }
             .task {
                 print("fetching folder \(folder.displayName)")
