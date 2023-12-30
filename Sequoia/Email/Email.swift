@@ -24,7 +24,7 @@ class Email {
     }
     
     func fetchContent(folder: String = "INBOX") {
-        let operation = account.imap.fetchMessageOperation(withFolder: folder, uid: self.id)
+        let operation = self.account.imap.fetchMessageOperation(withFolder: folder, uid: self.id)
         operation?.start { error, data in
             if let error = error {
                 print(error)

@@ -5,22 +5,22 @@
 //  Created by Aditya Saravana on 12/29/23.
 //
 
-import SwiftUI
-import Defaults
 import CardStack
+import Defaults
+import SwiftUI
 
 struct TriageView: View {
     @Default(.showTriageKeybindGuide) var showTriageKeybindGuide
     @Binding var emails: [Email]
     @State var message = "You haven't hit a key yet"
-    
+
     private let keyMessages: [CGKeyCode: String] = [
         .kVK_ANSI_A: "A",
         .kVK_ANSI_S: "S",
         .kVK_ANSI_D: "D",
         .kVK_ANSI_U: "U"
     ]
-    
+
     var body: some View {
         ZStack {
             Color.cardBackground
@@ -28,7 +28,7 @@ struct TriageView: View {
                 Text(message)
                     .font(.largeTitle)
                 CardView(email: emails.first ?? .init(account: .init(.icloud, username: "", password: ""), message: .init()))
-                
+
                 if showTriageKeybindGuide {
                     Image(.triageKeybindGuide)
                         .resizable()
@@ -48,11 +48,10 @@ struct TriageView: View {
                         .font(.caption)
                         .foregroundStyle(.gray)
                 }
-                
             }
             .padding()
             .frame(width: 600, height: 600)
-        }.onAppear{
+        }.onAppear {
             NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
                 if let keyMessage = keyMessages[CGKeyCode(Int(event.keyCode))] {
                     self.message = "You've hit the \(keyMessage) key"
@@ -64,7 +63,7 @@ struct TriageView: View {
 }
 
 struct CardView: View {
-    var email: Email
+    var emailEntity: EmailEntity
     var body: some View {
         VStack {
             HStack {
@@ -80,9 +79,9 @@ struct CardView: View {
                 Spacer()
             }
             .padding(.bottom, 40)
-            
-            EmailBodyView(email: email).cornerRadius(12).padding()
-            
+
+            EmailBodyView(emailEntity: EmailEntity).cornerRadius(12).padding()
+
             Spacer()
         }
         .padding(20)
@@ -91,7 +90,6 @@ struct CardView: View {
         .frame(width: 450, height: 250)
         .cornerRadius(12)
         .padding()
-        
     }
 }
 

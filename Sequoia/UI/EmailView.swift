@@ -5,26 +5,53 @@
 //  Created by Aditya Saravana on 12/26/23.
 //
 
-import SwiftUI
 import MailCore
+import SwiftUI
 
 struct EmailView: View {
-    var email: Email
-    
+    var emailId: UInt32
+
+    @FetchRequest var fetchedEmail: FetchedResults<EmailEntity>
+
+    init(emailId: UInt32) {
+        self.emailId = emailId
+        self._fetchedEmail = FetchRequest<EmailEntity>(
+            entity: EmailEntity.entity(),
+            sortDescriptors: [],
+            predicate: NSPredicate(format: "uid == %ld", emailId)
+        )
+    }
+
     var body: some View {
         VStack {
-            EmailBodyView(email: email)
+            if let emailEntity = fetchedEmail.first {
+                EmailBodyView(emailEntity: emailEntity)
+            }
         }
     }
 }
 
 struct EmailBodyView: View {
-    var email: Email
+    var emailEntity: EmailEntity
+
+    private func loadEmailBody(from filePath: String) -> String? {
+        do {
+            return try String(contentsOfFile: filePath, encoding: .utf8)
+        } catch {
+            print("Error loading email body: \(error)")
+            return nil
+        }
+    }
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                HTMLStringView(htmlContent: email.body)
-                
+                if let bodyFilePath = emailEntity.bodyFileReference,
+                   let bodyContent = loadEmailBody(from: bodyFilePath)
+                {
+                    HTMLStringView(htmlContent: bodyContent)
+                }
+
                 Spacer()
             }
             Spacer()
