@@ -8,6 +8,13 @@
 import Foundation
 import MailCore
 
+struct CustomFolder: Identifiable {
+    let id = UUID()
+    
+    var name: String
+    var folder: [Email]
+}
+
 class Account: ObservableObject, Identifiable {
     var displayName: String
     var server: EmailServer
