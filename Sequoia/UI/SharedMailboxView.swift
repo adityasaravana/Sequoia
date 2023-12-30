@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SharedMailboxView: View {
     @EnvironmentObject var mailManager: MailManager
+    @Binding var triageContent: [Email]
     @State var mailbox: [Email] = []
+    @Environment(\.openWindow) var openWindow
     
     var sharedFolder: SharedFolder
     
@@ -55,6 +57,15 @@ struct SharedMailboxView: View {
                 }
             }
             
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    triageContent = mailbox
+                    openWindow(id: "triage")
+                } label: {
+                    Image(systemName: "rectangle.stack")
+                }.disabled(mailbox.isEmpty)
+            }
+            
             ToolbarItem(placement: .principal) {
                 Button(action: {}) {
                     Image(systemName: "arrowshape.turn.up.left")
@@ -79,6 +90,6 @@ struct SharedMailboxView: View {
 }
 
 #Preview {
-    SharedMailboxView(sharedFolder: .allInboxes)
+    SharedMailboxView(triageContent: .constant(MailManager.shared.allInboxes), sharedFolder: .allInboxes)
         .environmentObject(MailManager.shared)
 }

@@ -12,6 +12,15 @@ struct EmailView: View {
     var email: Email
     
     var body: some View {
+        VStack {
+            EmailBodyView(email: email)
+        }
+    }
+}
+
+struct EmailBodyView: View {
+    var email: Email
+    var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 HTMLStringView(htmlContent: email.body)

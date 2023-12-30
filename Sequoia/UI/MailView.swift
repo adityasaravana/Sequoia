@@ -10,18 +10,19 @@ import SwiftUI
 struct MailView: View {
     @EnvironmentObject var mailManager: MailManager
     @State var selection: Set<Int> = [0]
+    @Binding var triageContent: [Email]
     
     var body: some View {
         NavigationView {
             List(selection: self.$selection) {
-                NavigationLink(destination: SharedMailboxView(sharedFolder: .allInboxes).environmentObject(mailManager)) {
+                NavigationLink(destination: SharedMailboxView(triageContent: $triageContent, sharedFolder: .allInboxes).environmentObject(mailManager)) {
                     Label("All Inboxes", systemImage: "tray.2")
                 }
                 .tag(0)
-                NavigationLink(destination: SharedMailboxView(sharedFolder: .allDrafts).environmentObject(mailManager)) {
+                NavigationLink(destination: SharedMailboxView(triageContent: $triageContent, sharedFolder: .allDrafts).environmentObject(mailManager)) {
                     Label("All Drafts", systemImage: "doc.on.doc")
                 }
-                NavigationLink(destination: SharedMailboxView(sharedFolder: .allSent).environmentObject(mailManager)) {
+                NavigationLink(destination: SharedMailboxView(triageContent: $triageContent, sharedFolder: .allSent).environmentObject(mailManager)) {
                     Label("All Sent", systemImage: "paperplane")
                 }
                 
@@ -61,12 +62,4 @@ struct MailView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
-}
-
-#Preview {
-    MailView()
-        .environmentObject(MailManager())
-        .onAppear {
-            MailManager.shared.accounts.append(Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
-        }
 }
