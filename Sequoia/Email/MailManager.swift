@@ -32,6 +32,18 @@ class MailManager: ObservableObject {
         }
 
         dataController = DataController(context: persistenceController.context)
+        self.startFetchingEmails()
+    }
+    
+    func startFetchingEmails() {
+        Timer.scheduledTimer(withTimeInterval: 60 * 5, repeats: true) { [weak self] _ in
+            print("Fetching new emails ...")
+            for account in self!.accounts {
+                self?.dataController.fetchNewEmailsForAccount(account: account,
+                                                              with: IMAPFolder.inbox.displayName)
+                
+            }
+        }
     }
     
     @Published var accounts: [Account] = [

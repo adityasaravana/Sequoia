@@ -6,6 +6,7 @@
         <attribute name="imapPort" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="email" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EmailEntity" inverseName="account" inverseEntity="EmailEntity"/>
     </entity>
     <entity name="EmailEntity" representedClassName="EmailEntity" syncable="YES" codeGenerationType="class">
         <attribute name="bodyFileReference" optional="YES" attributeType="String"/>
@@ -24,6 +25,6 @@
         <attribute name="sequenceNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="subject" optional="YES" attributeType="String"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="email" inverseEntity="AccountEntity"/>
     </entity>
 </model>

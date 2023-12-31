@@ -16,20 +16,10 @@ class DataController {
         self.managedObjectContext = context
     }
     
-    func startFetchingEmails() {
-        Timer.scheduledTimer(withTimeInterval: 60 * 5, repeats: true) { [weak self] _ in
-            print("Fetching new emails ...")
-            self?.fetchNewEmails()
-        }
-    }
-    
-    func fetchNewEmails() {
-        
-    }
-    
-    private func fetchNewEmailsForAccount(account: Account, withFolder: IMAPFolder) {
-        // TODO: Update for all folders?
-        let fetchOperation = account.imap.fetchMessagesOperation(withFolder: "INBOX", requestKind: .headers, uids: MCOIndexSet(range: MCORangeMake(1, UINT64_MAX)))
+    func fetchNewEmailsForAccount(account: Account, with folder: String) {
+        let fetchOperation = account.imap.fetchMessagesOperation(withFolder: folder, 
+                                                                 requestKind: .headers,
+                                                                 uids: MCOIndexSet(range: MCORangeMake(1, UINT64_MAX)))
         fetchOperation?.start { [weak self] error, messages, _ in
             if let error = error {
                 print("Error fetching emails: \(error)")
