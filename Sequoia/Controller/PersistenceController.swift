@@ -25,4 +25,24 @@ class PersistentController {
     var context: NSManagedObjectContext {
         return container.viewContext
     }
+    
+    func clearAllData() {
+        #if DEBUG
+        print("Clearing all data ...")
+        let entities = container.managedObjectModel.entities
+        entities.forEach { entity in
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+            do {
+                try container.viewContext.execute(deleteRequest)
+            } catch let error as NSError {
+                print("Error clearing data for entity \(entity.name!): \(error), \(error.userInfo)")
+            }
+        }
+        #else
+        print("ERROR: Clear all data called in Production code!")
+        #endif
+    }
+
 }

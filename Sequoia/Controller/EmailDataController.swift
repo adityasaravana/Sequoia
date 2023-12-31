@@ -30,46 +30,58 @@ class DataController {
             // And, let's print out the messages:
             print("The post man delivereth: \(messages.debugDescription)")
             for message in messages {
-                self.processEmail(message: message as MCOIMAPMessage, for: account)
+                self.processEmail(message: message as MCOIMAPMessage, for: account, in: folder)
             }
         }
     }
     
-    private func processEmail(message: MCOIMAPMessage, for account: AccountContainer) {
+    private func processEmail(message: MCOIMAPMessage, for account: AccountContainer, in folder: String) {
         let fetchRequest: NSFetchRequest<Email> = Email.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "uid == %ld", message.uid)
         
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
+            let newEmail: Email
+            
             if results.isEmpty {
-                let newEmail = Email(context: managedObjectContext)
-                newEmail.uid = Int64(message.uid)
-                newEmail.sequenceNumber = Int64(message.sequenceNumber)
-                // Map flags
-                newEmail.flagSeen = message.flags.contains(.seen)
-                newEmail.flagAnswered = message.flags.contains(.answered)
-                newEmail.flagFlagged = message.flags.contains(.flagged)
-                newEmail.flagDeleted = message.flags.contains(.deleted)
-                newEmail.flagDraft = message.flags.contains(.draft)
-                newEmail.flagMDNSent = message.flags.contains(.mdnSent)
-                newEmail.flagForwarded = message.flags.contains(.forwarded)
-                newEmail.flagSubmitPending = message.flags.contains(.submitPending)
-                newEmail.flagSubmitted = message.flags.contains(.submitted)
-                
-                // Fetch and save the email body
-                fetchAndSaveEmailBody(for: newEmail, with: message.uid, with:account)
-                
-                try managedObjectContext.save()
+                newEmail = Email(context: managedObjectContext)
             } else {
-                print("Email with uid \(message.uid) already processed.")
+                newEmail = results.first!
+                print("Email with uid \(message.uid) already processed. Updating existing record.")
             }
+            newEmail.uid = Int64(message.uid)
+            newEmail.sequenceNumber = Int64(message.sequenceNumber)
+            // Map flags
+            newEmail.flagSeen = message.flags.contains(.seen)
+            newEmail.flagAnswered = message.flags.contains(.answered)
+            newEmail.flagFlagged = message.flags.contains(.flagged)
+            newEmail.flagDeleted = message.flags.contains(.deleted)
+            newEmail.flagDraft = message.flags.contains(.draft)
+            newEmail.flagMDNSent = message.flags.contains(.mdnSent)
+            newEmail.flagForwarded = message.flags.contains(.forwarded)
+            newEmail.flagSubmitPending = message.flags.contains(.submitPending)
+            newEmail.flagSubmitted = message.flags.contains(.submitted)
+            newEmail.sender = message.header?.from?.displayName
+            newEmail.subject = message.header?.subject
+            newEmail.sentDate = message.header?.date
+            newEmail.folderName = folder
+            
+            // Fetch and save the email body
+            if (newEmail.bodyFileReference == nil) {
+                fetchAndSaveEmailBody(for: newEmail, with: message.uid, with:account, in: folder)
+            }
+            
+            try managedObjectContext.save()
         } catch {
             print("Error processing email: \(error)")
         }
     }
 
-    private func fetchAndSaveEmailBody(for emailEntity: Email, with uid: UInt32, with account: AccountContainer) {
-        let operation = account.imap.fetchMessageOperation(withFolder: "INBOX", uid: uid)
+    private func fetchAndSaveEmailBody(for emailEntity: Email, 
+                                       with uid: UInt32,
+                                       with account: AccountContainer,
+                                       in folder: String) {
+        let operation = account.imap.fetchMessageOperation(withFolder: folder, uid: uid)
         operation?.start { [weak self] error, data in
             guard let self = self else { return }
             if let error = error {

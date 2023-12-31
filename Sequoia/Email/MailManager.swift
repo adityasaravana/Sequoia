@@ -18,11 +18,13 @@ class MailManager: ObservableObject {
     
     var dataController: DataController
     var persistenceController: PersistentController
+    var accounts: [AccountContainer]
+    
     
     init() {
         persistenceController = PersistentController.shared
         
-        let accounts = [
+        accounts = [
             AccountContainer(.icloud, username: Constants.testingUser, password: Constants.testingPwd),
             AccountContainer(.gmail, username: Constants.testingGmailUser, password: Constants.testingGmailPwd)
         ]
@@ -36,7 +38,7 @@ class MailManager: ObservableObject {
     }
     
     func startFetchingEmails() {
-        Timer.scheduledTimer(withTimeInterval: 60 * 5, repeats: true) { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             print("Fetching new emails ...")
             for account in self!.accounts {
                 self?.dataController.fetchNewEmailsForAccount(account: account,
@@ -46,9 +48,6 @@ class MailManager: ObservableObject {
         }
     }
     
-    @Published var accounts: [AccountContainer] = [
-        
-    ]
     
     func fetchNewMail(_ folder: IMAPFolder) {
         for account in accounts {
