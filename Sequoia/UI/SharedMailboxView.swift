@@ -55,10 +55,10 @@ struct SharedMailboxView: View {
                  */
             }
             .refreshable {
-                mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
+                mailManager.fetchAllNewMail()
             }
             .task {
-                mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
+                mailManager.fetchAllNewMail()
             }
             
             Text("Select an email")
@@ -98,7 +98,7 @@ struct SharedMailboxView: View {
             
             ToolbarItem(placement: .principal) {
                 Button {
-                    mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
+                    mailManager.fetchAllNewMail()
                 } label: {
                     Image(systemName: "tray.and.arrow.down")
                 }

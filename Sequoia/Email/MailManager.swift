@@ -37,24 +37,57 @@ class MailManager: ObservableObject {
         self.startFetchingEmails()
     }
     
+    fileprivate func listIMAPFolders(for account: AccountContainer, 
+                                     completion: @escaping ([MCOIMAPFolder]?, Error?) -> Void) {
+        let fetchOperation = account.imap.fetchAllFoldersOperation()
+        fetchOperation?.start { (error, folders) in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            completion(folders, nil)
+        }
+    }
+    
     func startFetchingEmails() {
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
             print("Fetching new emails ...")
-            for account in self!.accounts {
-                self?.dataController.fetchNewEmailsForAccount(account: account,
-                                                              with: IMAPFolder.inbox.displayName)
-                
+            guard let welf = self else {
+                print("BUG: MailManager got deallocated")
+                return
             }
+            
+            welf.fetchAllNewMail()
         }
     }
     
-    
-    func fetchNewMail(_ folder: IMAPFolder) {
+    func fetchAllNewMail() {
+        print("Fetching new emails ...")
+     
+        
         for account in accounts {
-            account.fetchFolder(folder)
+            print("Processing account \(account)")
+            listIMAPFolders(for: account) { folders, error in
+                if let error = error {
+                    print("Unable to list folders for \(account) \(error)")
+                    return
+                }
+                
+                if let folders = folders {
+                    for folder in folders {
+                        print("Processing folder \(String(describing: folder.path))")
+                        self.dataController.fetchNewEmailsForAccount(account: account,
+                                                                     with: folder.path)
+                    }
+                }
+            }
+            
         }
     }
     
+    
+
+    /*
     func aggregateInboxes() {
         allInboxes = accounts.flatMap { $0.inbox }
     }
@@ -66,4 +99,5 @@ class MailManager: ObservableObject {
     func aggregateDrafts() {
         allDrafts = accounts.flatMap { $0.drafts }
     }
+     */
 }

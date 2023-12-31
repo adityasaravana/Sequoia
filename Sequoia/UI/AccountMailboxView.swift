@@ -10,11 +10,19 @@ import CoreData
 
 struct AccountMailboxView: View {
     @ObservedObject var account: AccountContainer
-    
-    @FetchRequest(entity: Email.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
-    var emails: FetchedResults<Email>
-    
+    private var fetchRequest: FetchRequest<Email>
+    private var emails: FetchedResults<Email> { fetchRequest.wrappedValue }
+
+    init(account: AccountContainer, folder: IMAPFolder) {
+        self.account = account
+        self.folder = folder
+        self.fetchRequest = FetchRequest<Email>(
+            entity: Email.entity(),
+            sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: false)],
+            predicate: NSPredicate(format: "folderName == %@", account.server.folderName(for: folder))
+        )
+    }
+
     
     var folder: IMAPFolder
     
@@ -55,12 +63,13 @@ struct AccountMailboxView: View {
             }
             .listStyle(InsetListStyle())
             .refreshable {
-                account.fetchFolder(folder)
+                
+                // TODO: account.fetchFolder(folder)
                 updateEmails()
             }
             .task {
                 print("fetching folder \(folder.displayName)")
-                account.fetchFolder(folder)
+                // TODO: account.fetchFolder(folder)
                 updateEmails()
             }
             
@@ -89,7 +98,7 @@ struct AccountMailboxView: View {
             
             ToolbarItem(placement: .principal) {
                 Button {
-                    account.fetchFolder(folder)
+                    // TODO: account.fetchFolder(folder)
                     updateEmails()
                 } label: {
                     Image(systemName: "tray.and.arrow.down")

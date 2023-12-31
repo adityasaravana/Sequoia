@@ -22,14 +22,6 @@ class AccountContainer: ObservableObject, Identifiable {
     var password: String
     var imap: MCOIMAPSession
     
-    
-    
-    @Published var inbox: [EmailContainer] = []
-    @Published var drafts: [EmailContainer] = []
-    @Published var sent: [EmailContainer] = []
-    @Published var archive: [EmailContainer] = []
-    @Published var junk: [EmailContainer] = []
-    @Published var trash: [EmailContainer] = []
     @Published var customFolders: [CustomFolder] = []
     
     init(_ server: EmailServer, username: String, password: String) {
@@ -45,25 +37,10 @@ class AccountContainer: ObservableObject, Identifiable {
         self.imap.connectionType = .TLS
         
         self.displayName = server.displayName
-        
-#if DEBUG
-        listIMAPFolders() { folders, error in
-            if let error = error {
-                print("Error: \(error)")
-                return
-            }
-            
-            if let folders = folders {
-                for folder in folders {
-                    print("Folder: \(String(describing: folder.path))")
-                }
-            } else {
-                print("No folders were found.")
-            }
-        }
-#endif
     }
     
+    /*
+     
     func fetchAllFolders() {
         fetchFolder(.inbox)
         fetchFolder(.archive)
@@ -151,18 +128,11 @@ class AccountContainer: ObservableObject, Identifiable {
             }
         }
     }
+     
+     */
 }
 
 
 extension AccountContainer {
-    fileprivate func listIMAPFolders(completion: @escaping ([MCOIMAPFolder]?, Error?) -> Void) {
-        let fetchOperation = imap.fetchAllFoldersOperation()
-        fetchOperation?.start { (error, folders) in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            completion(folders, nil)
-        }
-    }
+
 }
