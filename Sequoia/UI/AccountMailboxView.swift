@@ -9,11 +9,11 @@ import SwiftUI
 import CoreData
 
 struct AccountMailboxView: View {
-    @ObservedObject var account: Account
+    @ObservedObject var account: AccountContainer
     
-    @FetchRequest(entity: EmailEntity.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
-    var emails: FetchedResults<EmailEntity>
+    @FetchRequest(entity: Email.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    var emails: FetchedResults<Email>
     
     
     var folder: IMAPFolder

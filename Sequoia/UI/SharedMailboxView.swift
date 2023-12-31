@@ -11,16 +11,16 @@ struct SharedMailboxView: View {
     @EnvironmentObject var mailManager: MailManager
     
     // TODO: Add filters for triage content
-    @FetchRequest(entity: EmailEntity.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
-    var triageContent: FetchedResults<EmailEntity>
+    @FetchRequest(entity: Email.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    var triageContent: FetchedResults<Email>
     
     // TODO: Add appropriate predictes, example:
     // predicate: NSPredicate(format: "c == %@", "value"))
 
-    @FetchRequest(entity: EmailEntity.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
-    var mailbox: FetchedResults<EmailEntity>
+    @FetchRequest(entity: Email.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    var mailbox: FetchedResults<Email>
 
     
     @Environment(\.openWindow) var openWindow

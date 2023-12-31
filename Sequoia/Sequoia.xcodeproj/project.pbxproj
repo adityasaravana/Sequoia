@@ -20,19 +20,19 @@
 		596627D92B3BE9D500DD7E1A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627D82B3BE9D500DD7E1A /* Extensions.swift */; };
 		596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627DF2B3BEBC700DD7E1A /* Constants.swift */; };
 		596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E32B3BECCE00DD7E1A /* EmailView.swift */; };
-		596627E62B3C0B8B00DD7E1A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E52B3C0B8B00DD7E1A /* Account.swift */; };
+		596627E62B3C0B8B00DD7E1A /* AccountContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596627E52B3C0B8B00DD7E1A /* AccountContainer.swift */; };
 		5975C3552B3BC135008CC39B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3542B3BC135008CC39B /* App.swift */; };
 		5975C3572B3BC135008CC39B /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C3562B3BC135008CC39B /* MailView.swift */; };
 		5975C3592B3BC136008CC39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C3582B3BC136008CC39B /* Assets.xcassets */; };
 		5975C35C2B3BC136008CC39B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5975C35B2B3BC136008CC39B /* Preview Assets.xcassets */; };
 		5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975C36D2B3BC761008CC39B /* EmailServer.swift */; };
 		59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05862B3CE9E600E786CB /* MailManager.swift */; };
-		59DB05892B3D26DF00E786CB /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05882B3D26DF00E786CB /* Email.swift */; };
+		59DB05892B3D26DF00E786CB /* EmailContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05882B3D26DF00E786CB /* EmailContainer.swift */; };
 		59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05AD2B3D36D900E786CB /* NewEmailView.swift */; };
 		59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */; };
 		59F33D6E2B3E725000F03C72 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6D2B3E725000F03C72 /* Folder.swift */; };
 		A8F4471C2B3FFBA100D4B284 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = A8F4471B2B3FFBA100D4B284 /* CardStack */; };
-		A8F4471F2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8F4471D2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodeld */; };
+		A8F4471F2B3FFC5D00D4B284 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8F4471D2B3FFC5D00D4B284 /* DataModel.xcdatamodeld */; };
 		A8F447212B3FFD6100D4B284 /* EmailDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F447202B3FFD6100D4B284 /* EmailDataController.swift */; };
 		A8F447232B40025E00D4B284 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F447222B40025E00D4B284 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
@@ -47,7 +47,7 @@
 		596627D82B3BE9D500DD7E1A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		596627DF2B3BEBC700DD7E1A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		596627E32B3BECCE00DD7E1A /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
-		596627E52B3C0B8B00DD7E1A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		596627E52B3C0B8B00DD7E1A /* AccountContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountContainer.swift; sourceTree = "<group>"; };
 		5975C3512B3BC135008CC39B /* Sequoia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sequoia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975C3542B3BC135008CC39B /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		5975C3562B3BC135008CC39B /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		5975C35D2B3BC136008CC39B /* Sequoia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sequoia.entitlements; sourceTree = "<group>"; };
 		5975C36D2B3BC761008CC39B /* EmailServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailServer.swift; sourceTree = "<group>"; };
 		59DB05862B3CE9E600E786CB /* MailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailManager.swift; sourceTree = "<group>"; };
-		59DB05882B3D26DF00E786CB /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
+		59DB05882B3D26DF00E786CB /* EmailContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailContainer.swift; sourceTree = "<group>"; };
 		59DB05AD2B3D36D900E786CB /* NewEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEmailView.swift; sourceTree = "<group>"; };
 		59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		59F33D6D2B3E725000F03C72 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -133,9 +133,9 @@
 			isa = PBXGroup;
 			children = (
 				5975C36D2B3BC761008CC39B /* EmailServer.swift */,
-				596627E52B3C0B8B00DD7E1A /* Account.swift */,
+				596627E52B3C0B8B00DD7E1A /* AccountContainer.swift */,
 				59DB05862B3CE9E600E786CB /* MailManager.swift */,
-				59DB05882B3D26DF00E786CB /* Email.swift */,
+				59DB05882B3D26DF00E786CB /* EmailContainer.swift */,
 				595E332E2B3D88A100A55250 /* IMAPFolder.swift */,
 				595E33322B3E04EE00A55250 /* SharedFolder.swift */,
 				59F33D6D2B3E725000F03C72 /* Folder.swift */,
@@ -146,7 +146,7 @@
 		A8F447242B40029200D4B284 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A8F4471D2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodeld */,
+				A8F4471D2B3FFC5D00D4B284 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -248,15 +248,15 @@
 				59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */,
 				5975C3572B3BC135008CC39B /* MailView.swift in Sources */,
 				596627E42B3BECCE00DD7E1A /* EmailView.swift in Sources */,
-				596627E62B3C0B8B00DD7E1A /* Account.swift in Sources */,
+				596627E62B3C0B8B00DD7E1A /* AccountContainer.swift in Sources */,
 				59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */,
 				595E332F2B3D88A100A55250 /* IMAPFolder.swift in Sources */,
 				5966128F2B3FEF3900795565 /* Defaults.swift in Sources */,
 				A8F447212B3FFD6100D4B284 /* EmailDataController.swift in Sources */,
 				596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */,
 				5975C3552B3BC135008CC39B /* App.swift in Sources */,
-				A8F4471F2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodeld in Sources */,
-				59DB05892B3D26DF00E786CB /* Email.swift in Sources */,
+				A8F4471F2B3FFC5D00D4B284 /* DataModel.xcdatamodeld in Sources */,
+				59DB05892B3D26DF00E786CB /* EmailContainer.swift in Sources */,
 				A8F447232B40025E00D4B284 /* PersistenceController.swift in Sources */,
 				59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */,
 				595E33332B3E04EE00A55250 /* SharedFolder.swift in Sources */,
@@ -531,13 +531,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		A8F4471D2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodeld */ = {
+		A8F4471D2B3FFC5D00D4B284 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				A8F4471E2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodel */,
 			);
 			currentVersion = A8F4471E2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodel */;
-			path = EmailDataModel.xcdatamodeld;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

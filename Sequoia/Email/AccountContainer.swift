@@ -12,10 +12,10 @@ struct CustomFolder: Identifiable {
     let id = UUID()
     
     var name: String
-    var folder: [Email]
+    var folder: [EmailContainer]
 }
 
-class Account: ObservableObject, Identifiable {
+class AccountContainer: ObservableObject, Identifiable {
     var displayName: String
     var server: EmailServer
     var username: String
@@ -24,12 +24,12 @@ class Account: ObservableObject, Identifiable {
     
     
     
-    @Published var inbox: [Email] = []
-    @Published var drafts: [Email] = []
-    @Published var sent: [Email] = []
-    @Published var archive: [Email] = []
-    @Published var junk: [Email] = []
-    @Published var trash: [Email] = []
+    @Published var inbox: [EmailContainer] = []
+    @Published var drafts: [EmailContainer] = []
+    @Published var sent: [EmailContainer] = []
+    @Published var archive: [EmailContainer] = []
+    @Published var junk: [EmailContainer] = []
+    @Published var trash: [EmailContainer] = []
     @Published var customFolders: [CustomFolder] = []
     
     init(_ server: EmailServer, username: String, password: String) {
@@ -55,7 +55,7 @@ class Account: ObservableObject, Identifiable {
             
             if let folders = folders {
                 for folder in folders {
-                    print("Folder: \(folder.path)")
+                    print("Folder: \(String(describing: folder.path))")
                 }
             } else {
                 print("No folders were found.")
@@ -115,7 +115,7 @@ class Account: ObservableObject, Identifiable {
                 if let messages = fetchedMessages {
                     self.reset(folder)
                     for message in messages {
-                        let email = Email.init(account: self, message: message)
+                        let email = EmailContainer.init(account: self, message: message)
                         
                         switch folder {
                         case .inbox:
@@ -154,7 +154,7 @@ class Account: ObservableObject, Identifiable {
 }
 
 
-extension Account {
+extension AccountContainer {
     fileprivate func listIMAPFolders(completion: @escaping ([MCOIMAPFolder]?, Error?) -> Void) {
         let fetchOperation = imap.fetchAllFoldersOperation()
         fetchOperation?.start { (error, folders) in

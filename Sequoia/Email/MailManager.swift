@@ -10,9 +10,9 @@ import MailCore
 import CoreData
 
 class MailManager: ObservableObject {
-    @Published var allInboxes: [Email] = []
-    @Published var allDrafts: [Email] = []
-    @Published var allSent: [Email] = []
+    @Published var allInboxes: [EmailContainer] = []
+    @Published var allDrafts: [EmailContainer] = []
+    @Published var allSent: [EmailContainer] = []
     
     static let shared = MailManager()
     
@@ -23,8 +23,8 @@ class MailManager: ObservableObject {
         persistenceController = PersistentController.shared
         
         let accounts = [
-            Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd),
-            Account(.gmail, username: Constants.testingGmailUser, password: Constants.testingGmailPwd)
+            AccountContainer(.icloud, username: Constants.testingUser, password: Constants.testingPwd),
+            AccountContainer(.gmail, username: Constants.testingGmailUser, password: Constants.testingGmailPwd)
         ]
         
         accounts.map { account in
@@ -46,7 +46,7 @@ class MailManager: ObservableObject {
         }
     }
     
-    @Published var accounts: [Account] = [
+    @Published var accounts: [AccountContainer] = [
         
     ]
     

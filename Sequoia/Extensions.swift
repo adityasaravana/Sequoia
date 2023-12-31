@@ -13,9 +13,9 @@ public func printDivider() {
 }
 
 extension MCOIMAPMessage: Identifiable {}
-extension Email: Identifiable {}
-extension Email: Equatable {
-    static func == (lhs: Email, rhs: Email) -> Bool {
+extension EmailContainer: Identifiable {}
+extension EmailContainer: Equatable {
+    static func == (lhs: EmailContainer, rhs: EmailContainer) -> Bool {
         lhs === rhs
     }
 }

@@ -16,7 +16,7 @@ class DataController {
         self.managedObjectContext = context
     }
     
-    func fetchNewEmailsForAccount(account: Account, with folder: String) {
+    func fetchNewEmailsForAccount(account: AccountContainer, with folder: String) {
         let fetchOperation = account.imap.fetchMessagesOperation(withFolder: folder, 
                                                                  requestKind: .headers,
                                                                  uids: MCOIndexSet(range: MCORangeMake(1, UINT64_MAX)))
@@ -35,14 +35,14 @@ class DataController {
         }
     }
     
-    private func processEmail(message: MCOIMAPMessage, for account: Account) {
-        let fetchRequest: NSFetchRequest<EmailEntity> = EmailEntity.fetchRequest()
+    private func processEmail(message: MCOIMAPMessage, for account: AccountContainer) {
+        let fetchRequest: NSFetchRequest<Email> = Email.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "uid == %ld", message.uid)
         
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
             if results.isEmpty {
-                let newEmail = EmailEntity(context: managedObjectContext)
+                let newEmail = Email(context: managedObjectContext)
                 newEmail.uid = Int64(message.uid)
                 newEmail.sequenceNumber = Int64(message.sequenceNumber)
                 // Map flags
@@ -68,7 +68,7 @@ class DataController {
         }
     }
 
-    private func fetchAndSaveEmailBody(for emailEntity: EmailEntity, with uid: UInt32, with account: Account) {
+    private func fetchAndSaveEmailBody(for emailEntity: Email, with uid: UInt32, with account: AccountContainer) {
         let operation = account.imap.fetchMessageOperation(withFolder: "INBOX", uid: uid)
         operation?.start { [weak self] error, data in
             guard let self = self else { return }

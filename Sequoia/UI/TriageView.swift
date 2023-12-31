@@ -13,9 +13,9 @@ struct TriageView: View {
     @Default(.showTriageKeybindGuide) var showTriageKeybindGuide
     
     // TODO: Add appropriate filters for triage content
-    @FetchRequest(entity: EmailEntity.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
-    var emails: FetchedResults<EmailEntity>
+    @FetchRequest(entity: Email.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    var emails: FetchedResults<Email>
     @State var message = "You haven't hit a key yet"
 
     private let keyMessages: [CGKeyCode: String] = [
@@ -67,7 +67,7 @@ struct TriageView: View {
 }
 
 struct CardView: View {
-    var emailEntity: EmailEntity
+    var emailEntity: Email
     var body: some View {
         VStack {
             HStack {

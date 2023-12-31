@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct MailView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var mailManager: MailManager
     @State var selection: Set<Int> = [0]
     
     // TODO: Add appropriate filters for triage content
-    @FetchRequest(entity: EmailEntity.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
-    var triageContent: FetchedResults<EmailEntity>
+    @FetchRequest(entity: Email.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    var triageContent: FetchedResults<Email>
     
     var body: some View {
         NavigationView {

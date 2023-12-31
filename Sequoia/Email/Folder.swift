@@ -8,6 +8,6 @@
 import Foundation
 
 struct Folder {
-    var emails: [Email]
+    var emails: [EmailContainer]
     var imapFolder: IMAPFolder
 }

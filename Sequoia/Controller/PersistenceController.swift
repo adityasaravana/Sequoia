@@ -13,7 +13,7 @@ class PersistentController {
     let container: NSPersistentContainer
 
     private init() {
-        container = NSPersistentContainer(name: "EmailDataModel")
+        container = NSPersistentContainer(name: "DataModel")
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 print("Unresolved error in Persistence Controller \(error), \(error.userInfo)")

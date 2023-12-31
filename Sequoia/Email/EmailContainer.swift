@@ -8,14 +8,14 @@
 import Foundation
 import MailCore
 
-class Email {
+class EmailContainer {
     var id: UInt32
-    var account: Account
+    var account: AccountContainer
     var message: MCOIMAPMessage
     
     var body: String = "Loading..."
     
-    init(account: Account, message: MCOIMAPMessage) {
+    init(account: AccountContainer, message: MCOIMAPMessage) {
         self.id = message.uid
         self.account = account
         self.message = message
@@ -30,7 +30,7 @@ class Email {
                 print(error)
             } else if let data = data, let messageParser = MCOMessageParser(data: data) {
                 let htmlBody = messageParser.htmlBodyRendering()
-                let plainTextBody = messageParser.plainTextBodyRendering()
+                _ = messageParser.plainTextBodyRendering()
                 
                 // You can choose to return either HTML or plain text
                 self.body = htmlBody ?? "nil"

@@ -9,7 +9,7 @@ import MailCore
 import SwiftUI
 
 struct EmailView: View {
-    var emailEntity: EmailEntity
+    var emailEntity: Email
 
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct EmailView: View {
 }
 
 struct EmailBodyView: View {
-    var emailEntity: EmailEntity
+    var emailEntity: Email
 
     private func loadEmailBody(from filePath: String) -> String? {
         do {

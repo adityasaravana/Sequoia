@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES" codeGenerationType="class">
+    <entity name="Account" representedClassName=".Account" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" optional="YES" attributeType="String"/>
         <attribute name="imapHostname" optional="YES" attributeType="String"/>
         <attribute name="imapPort" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="email" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EmailEntity" inverseName="account" inverseEntity="EmailEntity"/>
+        <relationship name="emailRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Email" inverseName="accountRelationship" inverseEntity="Email"/>
     </entity>
-    <entity name="EmailEntity" representedClassName="EmailEntity" syncable="YES" codeGenerationType="class">
+    <entity name="Email" representedClassName=".Email" syncable="YES" codeGenerationType="class">
         <attribute name="bodyFileReference" optional="YES" attributeType="String"/>
         <attribute name="flagAnswered" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="flagDeleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -25,6 +25,6 @@
         <attribute name="sequenceNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="subject" optional="YES" attributeType="String"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="email" inverseEntity="AccountEntity"/>
+        <relationship name="accountRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="emailRelationship" inverseEntity="Account"/>
     </entity>
 </model>
