@@ -9,8 +9,20 @@ import SwiftUI
 
 struct SharedMailboxView: View {
     @EnvironmentObject var mailManager: MailManager
-    @Binding var triageContent: [Email]
-    @State var mailbox: [Email] = []
+    
+    // TODO: Add filters for triage content
+    @FetchRequest(entity: EmailEntity.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
+    var triageContent: FetchedResults<EmailEntity>
+    
+    // TODO: Add appropriate predictes, example:
+    // predicate: NSPredicate(format: "c == %@", "value"))
+
+    @FetchRequest(entity: EmailEntity.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
+    var mailbox: FetchedResults<EmailEntity>
+
+    
     @Environment(\.openWindow) var openWindow
     
     var sharedFolder: SharedFolder
@@ -19,10 +31,10 @@ struct SharedMailboxView: View {
         NavigationView {
             List {
                 ForEach(mailbox) { email in
-                    NavigationLink(destination: EmailView(email: email)) {
+                    NavigationLink(destination: EmailView(emailEntity: email)) {
                         VStack(alignment: .leading) {
-                            Text(email.message.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
-                            Text(email.message.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
+                            Text(email.sender ?? "Unknown").font(.headline)
+                            Text(email.subject ?? "No Subject").font(.body)
                         }
                         .padding(.vertical, 8)
                     }.drawingGroup()
@@ -30,6 +42,8 @@ struct SharedMailboxView: View {
             }
             .listStyle(InsetListStyle())
             .onAppear {
+                /*
+                 // TODO: Assign mailbox filter on appear?
                 switch sharedFolder {
                 case .allInboxes:
                     self.mailbox = mailManager.allInboxes
@@ -38,6 +52,7 @@ struct SharedMailboxView: View {
                 case .allSent:
                     self.mailbox = mailManager.allSent
                 }
+                 */
             }
             .refreshable {
                 mailManager.fetchNewMail(sharedFolder.correspondingIMAPFolder)
@@ -59,7 +74,10 @@ struct SharedMailboxView: View {
             
             ToolbarItem(placement: .navigation) {
                 Button {
-                    triageContent = mailbox
+                    //
+                    // TODO: This should update filters?
+                    // triageContent = mailbox
+                    //
                     openWindow(id: "triage")
                 } label: {
                     Image(systemName: "rectangle.stack")
@@ -89,7 +107,10 @@ struct SharedMailboxView: View {
     }
 }
 
-#Preview {
-    SharedMailboxView(triageContent: .constant(MailManager.shared.allInboxes), sharedFolder: .allInboxes)
-        .environmentObject(MailManager.shared)
-}
+/*
+ #Preview {
+ // TODO:
+ // SharedMailboxView(triageContent: .constant(MailManager.shared.allInboxes), sharedFolder: .allInboxes)
+ //    .environmentObject(MailManager.shared)
+ }
+ */

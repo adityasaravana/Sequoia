@@ -11,7 +11,11 @@ import SwiftUI
 
 struct TriageView: View {
     @Default(.showTriageKeybindGuide) var showTriageKeybindGuide
-    @Binding var emails: [Email]
+    
+    // TODO: Add appropriate filters for triage content
+    @FetchRequest(entity: EmailEntity.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \EmailEntity.sentDate, ascending: true)])
+    var emails: FetchedResults<EmailEntity>
     @State var message = "You haven't hit a key yet"
 
     private let keyMessages: [CGKeyCode: String] = [
@@ -27,7 +31,7 @@ struct TriageView: View {
             VStack {
                 Text(message)
                     .font(.largeTitle)
-                CardView(email: emails.first ?? .init(account: .init(.icloud, username: "", password: ""), message: .init()))
+                // CardView(email: emails.first ?? .init(account: .init(.icloud, username: "", password: ""), message: .init()))
 
                 if showTriageKeybindGuide {
                     Image(.triageKeybindGuide)
@@ -67,20 +71,24 @@ struct CardView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(email.message.header.unsafelyUnwrapped.subject ?? "No Subject")
+                // TODO: Remove this when we don't need to refer to this code
+                // Text(email.message.header.unsafelyUnwrapped.subject ?? "No Subject")
+                Text(emailEntity.subject ?? "No Subject")
                     .bold()
                     .font(.title2)
                 Spacer()
             }
             HStack {
-                Text(email.message.header?.from?.displayName ?? "Unknown")
+                // TODO: Remove this when no longer needed
+                // Text(email.message.header?.from?.displayName ?? "Unknown")
+                Text(emailEntity.sender ?? "Unknown")
                     .font(.title3)
                     .foregroundColor(.accentColor)
                 Spacer()
             }
             .padding(.bottom, 40)
 
-            EmailBodyView(emailEntity: EmailEntity).cornerRadius(12).padding()
+            EmailBodyView(emailEntity: emailEntity).cornerRadius(12).padding()
 
             Spacer()
         }
@@ -94,18 +102,18 @@ struct CardView: View {
 }
 
 #Preview {
-    TriageView(emails: .constant(MailManager.shared.allInboxes))
+    TriageView()
         .onAppear { Defaults[.showTriageKeybindGuide] = true }
 }
 
 #Preview {
-    TriageView(emails: .constant(MailManager.shared.allInboxes))
+    TriageView()
         .onAppear { Defaults[.showTriageKeybindGuide] = false }
 }
 
 #Preview {
     ZStack {
         LinearGradient(gradient: Gradient(colors: [.white, .red, .black]), startPoint: .leading, endPoint: .trailing)
-        CardView(email: .init(account: .init(.icloud, username: "", password: ""), message: .init()))
+        // CardView(email: .init(account: .init(.icloud, username: "", password: ""), message: .init()))
     }
 }

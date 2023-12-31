@@ -9,10 +9,9 @@ import SwiftUI
 
 @main
 struct SequoiaApp: App {
-    @State var triageContent: [Email] = []
     var body: some Scene {
         WindowGroup {
-            MailView(triageContent: $triageContent)
+            MailView()
                 .environmentObject(MailManager.shared)
                 .onAppear {
                     MailManager.shared.accounts.append(Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
@@ -20,7 +19,7 @@ struct SequoiaApp: App {
                 }
         }
         Window("Triage", id: "triage") {
-            TriageView(emails: $triageContent)
+            TriageView()
         }
     }
 }

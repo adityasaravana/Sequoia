@@ -93,7 +93,7 @@ enum EmailServer {
             case .custom(let name):
                 return name // For custom folders
             }
-        case .custom(config: let config):
+        case .custom(config: _):
             switch folder {
             case .inbox:
                 return "INBOX"

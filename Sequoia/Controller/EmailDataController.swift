@@ -11,11 +11,9 @@ import MailCore
 
 class DataController {
     private var managedObjectContext: NSManagedObjectContext
-    private var account: Account
     
-    init(context: NSManagedObjectContext, account: Account) {
+    init(context: NSManagedObjectContext) {
         self.managedObjectContext = context
-        self.account = account
     }
     
     func startFetchingEmails() {
@@ -25,7 +23,11 @@ class DataController {
         }
     }
     
-    private func fetchNewEmails() {
+    func fetchNewEmails() {
+        
+    }
+    
+    private func fetchNewEmailsForAccount(account: Account, withFolder: IMAPFolder) {
         // TODO: Update for all folders?
         let fetchOperation = account.imap.fetchMessagesOperation(withFolder: "INBOX", requestKind: .headers, uids: MCOIndexSet(range: MCORangeMake(1, UINT64_MAX)))
         fetchOperation?.start { [weak self] error, messages, _ in
@@ -34,13 +36,16 @@ class DataController {
                 return
             }
             guard let self = self, let messages = messages else { return }
+            
+            // And, let's print out the messages:
+            print("The post man delivereth: \(messages.debugDescription)")
             for message in messages {
-                self.processEmail(message: message as MCOIMAPMessage)
+                self.processEmail(message: message as MCOIMAPMessage, for: account)
             }
         }
     }
     
-    private func processEmail(message: MCOIMAPMessage) {
+    private func processEmail(message: MCOIMAPMessage, for account: Account) {
         let fetchRequest: NSFetchRequest<EmailEntity> = EmailEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "uid == %ld", message.uid)
         
@@ -62,7 +67,7 @@ class DataController {
                 newEmail.flagSubmitted = message.flags.contains(.submitted)
                 
                 // Fetch and save the email body
-                fetchAndSaveEmailBody(for: newEmail, with: message.uid)
+                fetchAndSaveEmailBody(for: newEmail, with: message.uid, with:account)
                 
                 try managedObjectContext.save()
             } else {
@@ -73,7 +78,7 @@ class DataController {
         }
     }
 
-    private func fetchAndSaveEmailBody(for emailEntity: EmailEntity, with uid: UInt32) {
+    private func fetchAndSaveEmailBody(for emailEntity: EmailEntity, with uid: UInt32, with account: Account) {
         let operation = account.imap.fetchMessageOperation(withFolder: "INBOX", uid: uid)
         operation?.start { [weak self] error, data in
             guard let self = self else { return }

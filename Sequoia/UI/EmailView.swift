@@ -9,24 +9,11 @@ import MailCore
 import SwiftUI
 
 struct EmailView: View {
-    var emailId: UInt32
-
-    @FetchRequest var fetchedEmail: FetchedResults<EmailEntity>
-
-    init(emailId: UInt32) {
-        self.emailId = emailId
-        self._fetchedEmail = FetchRequest<EmailEntity>(
-            entity: EmailEntity.entity(),
-            sortDescriptors: [],
-            predicate: NSPredicate(format: "uid == %ld", emailId)
-        )
-    }
+    var emailEntity: EmailEntity
 
     var body: some View {
         VStack {
-            if let emailEntity = fetchedEmail.first {
-                EmailBodyView(emailEntity: emailEntity)
-            }
+            EmailBodyView(emailEntity: emailEntity)
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import MailCore
+import CoreData
 
 class MailManager: ObservableObject {
     @Published var allInboxes: [Email] = []
@@ -15,8 +16,22 @@ class MailManager: ObservableObject {
     
     static let shared = MailManager()
     
+    var dataController: DataController
+    var persistenceController: PersistentController
+    
     init() {
+        persistenceController = PersistentController.shared
         
+        let accounts = [
+            Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd),
+            Account(.gmail, username: Constants.testingGmailUser, password: Constants.testingGmailPwd)
+        ]
+        
+        accounts.map { account in
+            // let accountEntity = AccountEntity(context: self.persistenceController.context)
+        }
+
+        dataController = DataController(context: persistenceController.context)
     }
     
     @Published var accounts: [Account] = [
