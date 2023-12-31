@@ -33,7 +33,7 @@
 		59F33D6E2B3E725000F03C72 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6D2B3E725000F03C72 /* Folder.swift */; };
 		A8F4471C2B3FFBA100D4B284 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = A8F4471B2B3FFBA100D4B284 /* CardStack */; };
 		A8F4471F2B3FFC5D00D4B284 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8F4471D2B3FFC5D00D4B284 /* DataModel.xcdatamodeld */; };
-		A8F447212B3FFD6100D4B284 /* EmailDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F447202B3FFD6100D4B284 /* EmailDataController.swift */; };
+		A8F447212B3FFD6100D4B284 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F447202B3FFD6100D4B284 /* DataController.swift */; };
 		A8F447232B40025E00D4B284 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F447222B40025E00D4B284 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,7 @@
 		59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		59F33D6D2B3E725000F03C72 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		A8F4471E2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmailDataModel.xcdatamodel; sourceTree = "<group>"; };
-		A8F447202B3FFD6100D4B284 /* EmailDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDataController.swift; sourceTree = "<group>"; };
+		A8F447202B3FFD6100D4B284 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A8F447222B40025E00D4B284 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				A8F447222B40025E00D4B284 /* PersistenceController.swift */,
-				A8F447202B3FFD6100D4B284 /* EmailDataController.swift */,
+				A8F447202B3FFD6100D4B284 /* DataController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -252,7 +252,7 @@
 				59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */,
 				595E332F2B3D88A100A55250 /* IMAPFolder.swift in Sources */,
 				5966128F2B3FEF3900795565 /* Defaults.swift in Sources */,
-				A8F447212B3FFD6100D4B284 /* EmailDataController.swift in Sources */,
+				A8F447212B3FFD6100D4B284 /* DataController.swift in Sources */,
 				596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */,
 				5975C3552B3BC135008CC39B /* App.swift in Sources */,
 				A8F4471F2B3FFC5D00D4B284 /* DataModel.xcdatamodeld in Sources */,
