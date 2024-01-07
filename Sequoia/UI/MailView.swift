@@ -8,21 +8,26 @@
 import SwiftUI
 
 struct MailView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var mailManager: MailManager
     @State var selection: Set<Int> = [0]
-    @Binding var triageContent: [Email]
+    
+    // TODO: Add appropriate filters for triage content
+    @FetchRequest(entity: Email.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    var triageContent: FetchedResults<Email>
     
     var body: some View {
         NavigationView {
             List(selection: self.$selection) {
-                NavigationLink(destination: SharedMailboxView(triageContent: $triageContent, sharedFolder: .allInboxes).environmentObject(mailManager)) {
+                NavigationLink(destination: SharedMailboxView(sharedFolder: .allInboxes).environmentObject(mailManager)) {
                     Label("All Inboxes", systemImage: "tray.2")
                 }
                 .tag(0)
-                NavigationLink(destination: SharedMailboxView(triageContent: $triageContent, sharedFolder: .allDrafts).environmentObject(mailManager)) {
+                NavigationLink(destination: SharedMailboxView(sharedFolder: .allDrafts).environmentObject(mailManager)) {
                     Label("All Drafts", systemImage: "doc.on.doc")
                 }
-                NavigationLink(destination: SharedMailboxView(triageContent: $triageContent, sharedFolder: .allSent).environmentObject(mailManager)) {
+                NavigationLink(destination: SharedMailboxView(sharedFolder: .allSent).environmentObject(mailManager)) {
                     Label("All Sent", systemImage: "paperplane")
                 }
                 

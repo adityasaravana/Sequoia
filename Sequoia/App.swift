@@ -9,18 +9,19 @@ import SwiftUI
 
 @main
 struct SequoiaApp: App {
-    @State var triageContent: [Email] = []
+    // IMPORTANT: Ensure Persistent controller is loaded and initialized here
+    let persistenceController = PersistentController.shared
+
     var body: some Scene {
-        WindowGroup {
-            MailView(triageContent: $triageContent)
-                .environmentObject(MailManager.shared)
-                .onAppear {
-                    MailManager.shared.accounts.append(Account(.icloud, username: Constants.testingUser, password: Constants.testingPwd))
-                    MailManager.shared.accounts.append(Account(.gmail, username: Constants.testingGmailUser, password: Constants.testingGmailPwd))
-                }
+        Group {
+            WindowGroup {
+                MailView()
+                    .environmentObject(MailManager.shared)
+            }
+            Window("Triage", id: "triage") {
+                TriageView()
+            }
         }
-        Window("Triage", id: "triage") {
-            TriageView(emails: $triageContent)
-        }
+        .environment(\.managedObjectContext, PersistentController.shared.context)
     }
 }

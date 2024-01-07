@@ -12,24 +12,16 @@ struct CustomFolder: Identifiable {
     let id = UUID()
     
     var name: String
-    var folder: [Email]
+    var folder: [EmailContainer]
 }
 
-class Account: ObservableObject, Identifiable {
+class AccountContainer: ObservableObject, Identifiable {
     var displayName: String
     var server: EmailServer
     var username: String
     var password: String
     var imap: MCOIMAPSession
     
-    
-    
-    @Published var inbox: [Email] = []
-    @Published var drafts: [Email] = []
-    @Published var sent: [Email] = []
-    @Published var archive: [Email] = []
-    @Published var junk: [Email] = []
-    @Published var trash: [Email] = []
     @Published var customFolders: [CustomFolder] = []
     
     init(_ server: EmailServer, username: String, password: String) {
@@ -45,25 +37,10 @@ class Account: ObservableObject, Identifiable {
         self.imap.connectionType = .TLS
         
         self.displayName = server.displayName
-        
-#if DEBUG
-        listIMAPFolders() { folders, error in
-            if let error = error {
-                print("Error: \(error)")
-                return
-            }
-            
-            if let folders = folders {
-                for folder in folders {
-                    print("Folder: \(folder.path)")
-                }
-            } else {
-                print("No folders were found.")
-            }
-        }
-#endif
     }
     
+    /*
+     
     func fetchAllFolders() {
         fetchFolder(.inbox)
         fetchFolder(.archive)
@@ -115,7 +92,7 @@ class Account: ObservableObject, Identifiable {
                 if let messages = fetchedMessages {
                     self.reset(folder)
                     for message in messages {
-                        let email = Email.init(account: self, message: message)
+                        let email = EmailContainer.init(account: self, message: message)
                         
                         switch folder {
                         case .inbox:
@@ -151,18 +128,11 @@ class Account: ObservableObject, Identifiable {
             }
         }
     }
+     
+     */
 }
 
 
-extension Account {
-    fileprivate func listIMAPFolders(completion: @escaping ([MCOIMAPFolder]?, Error?) -> Void) {
-        let fetchOperation = imap.fetchAllFoldersOperation()
-        fetchOperation?.start { (error, folders) in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            completion(folders, nil)
-        }
-    }
+extension AccountContainer {
+
 }

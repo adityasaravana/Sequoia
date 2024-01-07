@@ -6,13 +6,30 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AccountMailboxView: View {
-    @ObservedObject var account: Account
-    @State var emails: [Email] = []
+    @ObservedObject var account: AccountContainer
+    private var fetchRequest: FetchRequest<Email>
+    private var emails: FetchedResults<Email> { fetchRequest.wrappedValue }
+
+    init(account: AccountContainer, folder: IMAPFolder) {
+        self.account = account
+        self.folder = folder
+        self.fetchRequest = FetchRequest<Email>(
+            entity: Email.entity(),
+            sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: false)],
+            predicate: NSPredicate(format: "folderName == %@", account.server.folderName(for: folder))
+        )
+    }
+
+    
     var folder: IMAPFolder
     
     func updateEmails() {
+        /*
+         
+         TODO: Here we need to call MailManager to call DataController to refresh
         switch folder {
         case .inbox:
             emails = account.inbox
@@ -28,17 +45,17 @@ struct AccountMailboxView: View {
             emails = account.trash
         case .custom(let name):
             emails = []
-        }
+        }*/
     }
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(emails) { email in
-                    NavigationLink(destination: EmailView(email: email)) {
+                    NavigationLink(destination: EmailView(emailEntity: email)) {
                         VStack(alignment: .leading) {
-                            Text(email.message.header.unsafelyUnwrapped.from.displayName ?? "Unknown").font(.headline)
-                            Text(email.message.header.unsafelyUnwrapped.subject ?? "No Subject").font(.body)
+                            Text(email.sender ?? "Unknown").font(.headline)
+                            Text(email.subject ?? "No Subject").font(.body)
                         }
                         .padding(.vertical, 8)
                     }.drawingGroup()
@@ -46,12 +63,13 @@ struct AccountMailboxView: View {
             }
             .listStyle(InsetListStyle())
             .refreshable {
-                account.fetchFolder(folder)
+                
+                // TODO: account.fetchFolder(folder)
                 updateEmails()
             }
             .task {
                 print("fetching folder \(folder.displayName)")
-                account.fetchFolder(folder)
+                // TODO: account.fetchFolder(folder)
                 updateEmails()
             }
             
@@ -80,7 +98,7 @@ struct AccountMailboxView: View {
             
             ToolbarItem(placement: .principal) {
                 Button {
-                    account.fetchFolder(folder)
+                    // TODO: account.fetchFolder(folder)
                     updateEmails()
                 } label: {
                     Image(systemName: "tray.and.arrow.down")
