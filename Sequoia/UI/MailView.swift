@@ -13,8 +13,13 @@ struct MailView: View {
     @State var selection: Set<Int> = [0]
     
     // TODO: Add appropriate filters for triage content
-    @FetchRequest(entity: Email.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    @FetchRequest(
+        entity: Email.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)
+        ]
+    )
+    
     var triageContent: FetchedResults<Email>
     
     var body: some View {
@@ -67,4 +72,8 @@ struct MailView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
+}
+
+#Preview {
+    MailView()
 }

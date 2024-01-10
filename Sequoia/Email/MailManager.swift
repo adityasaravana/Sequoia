@@ -50,20 +50,19 @@ class MailManager: ObservableObject {
     }
     
     func startFetchingEmails() {
-        Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 240, repeats: true) { [weak self] _ in
             print("Fetching new emails ...")
-            guard let welf = self else {
-                print("BUG: MailManager got deallocated")
+            guard let manager = self else {
+                print("MailManager got deallocated")
                 return
             }
             
-            welf.fetchAllNewMail()
+            manager.fetchAllNewMail()
         }
     }
     
     func fetchAllNewMail() {
         print("Fetching new emails ...")
-     
         
         for account in accounts {
             print("Processing account \(account)")
@@ -81,7 +80,6 @@ class MailManager: ObservableObject {
                     }
                 }
             }
-            
         }
     }
     
