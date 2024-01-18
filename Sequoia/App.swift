@@ -17,11 +17,15 @@ struct SequoiaApp: App {
             WindowGroup {
                 MailView()
                     .environmentObject(MailManager.shared)
+                    .onAppear {
+                        persistenceController.clearAllData()
+                    }
             }
             Window("Triage", id: "triage") {
                 TriageView()
             }
         }
-        .environment(\.managedObjectContext, PersistentController.shared.context)
+        .environment(\.managedObjectContext, persistenceController.context)
+        
     }
 }

@@ -13,14 +13,7 @@ struct MailView: View {
     @State var selection: Set<Int> = [0]
     
     // TODO: Add appropriate filters for triage content
-    @FetchRequest(
-        entity: Email.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)
-        ]
-    )
     
-    var triageContent: FetchedResults<Email>
     
     var body: some View {
         NavigationView {
@@ -67,6 +60,7 @@ struct MailView: View {
             }
             .listStyle(SidebarListStyle())
             .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, maxHeight: .infinity)
+            
             
             Text("Select an email")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -13,8 +13,14 @@ struct TriageView: View {
     @Default(.showTriageKeybindGuide) var showTriageKeybindGuide
     
     // TODO: Add appropriate filters for triage content
-    @FetchRequest(entity: Email.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)])
+    
+    @FetchRequest(
+        entity: Email.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Email.sentDate, ascending: true)
+        ]
+    )
+    
     var emails: FetchedResults<Email>
     @State var message = "You haven't hit a key yet"
 

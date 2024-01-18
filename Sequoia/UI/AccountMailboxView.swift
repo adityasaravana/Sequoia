@@ -18,13 +18,17 @@ struct AccountMailboxView: View {
         self.folder = folder
         self.fetchRequest = FetchRequest<Email>(
             entity: Email.entity(),
-            sortDescriptors: [NSSortDescriptor(keyPath: \Email.sentDate, ascending: false)],
+            sortDescriptors: [
+                NSSortDescriptor(keyPath: \Email.sentDate, ascending: false)
+            ],
             predicate: NSPredicate(format: "folderName == %@", account.server.folderName(for: folder))
         )
     }
 
     
     var folder: IMAPFolder
+    
+    var showTriage: Bool = true
     
     func updateEmails() {
         /*
@@ -50,37 +54,27 @@ struct AccountMailboxView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(emails) { email in
-                    NavigationLink(destination: EmailView(emailEntity: email)) {
-                        VStack(alignment: .leading) {
-                            Text(email.sender ?? "Unknown").font(.headline)
-                            Text(email.subject ?? "No Subject").font(.body)
-                        }
-                        .padding(.vertical, 8)
-                    }.drawingGroup()
-                }
-            }
-            .listStyle(InsetListStyle())
-            .refreshable {
+            MailboxView(mailbox: emails, onAppear: {
                 
-                // TODO: account.fetchFolder(folder)
-                updateEmails()
-            }
-            .task {
+            }, asyncOnAppear: {
                 print("fetching folder \(folder.displayName)")
                 // TODO: account.fetchFolder(folder)
                 updateEmails()
-            }
-            
-            Text("Select an email")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }, onRefresh: {
+                
+                // TODO: account.fetchFolder(folder)
+                updateEmails()
+            })
         }
         .navigationTitle("Inbox")
         .toolbar {
             ToolbarItem(placement: .navigation) {
-                Button(action: {}) {
-                    Image(systemName: "square.and.pencil")
+                NewEmailButtonView()
+            }
+            
+            if showTriage {
+                ToolbarItem(placement: .navigation) {
+                    TriageButtonView(isEmpty: emails.isEmpty)
                 }
             }
             

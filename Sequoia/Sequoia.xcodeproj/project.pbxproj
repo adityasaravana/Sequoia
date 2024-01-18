@@ -31,6 +31,9 @@
 		59DB05AE2B3D36D900E786CB /* NewEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB05AD2B3D36D900E786CB /* NewEmailView.swift */; };
 		59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */; };
 		59F33D6E2B3E725000F03C72 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33D6D2B3E725000F03C72 /* Folder.swift */; };
+		6BAF0C5A2B4E1B830041ADFF /* MailboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF0C592B4E1B830041ADFF /* MailboxView.swift */; };
+		6BF4B26E2B4F33D300FA2006 /* TriageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF4B26D2B4F33D300FA2006 /* TriageButtonView.swift */; };
+		6BF4B2702B4F365400FA2006 /* NewEmailButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF4B26F2B4F365400FA2006 /* NewEmailButtonView.swift */; };
 		A8F4471C2B3FFBA100D4B284 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = A8F4471B2B3FFBA100D4B284 /* CardStack */; };
 		A8F4471F2B3FFC5D00D4B284 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8F4471D2B3FFC5D00D4B284 /* DataModel.xcdatamodeld */; };
 		A8F447212B3FFD6100D4B284 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F447202B3FFD6100D4B284 /* DataController.swift */; };
@@ -60,6 +63,9 @@
 		59DB05AD2B3D36D900E786CB /* NewEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEmailView.swift; sourceTree = "<group>"; };
 		59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLStringView.swift; sourceTree = "<group>"; };
 		59F33D6D2B3E725000F03C72 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		6BAF0C592B4E1B830041ADFF /* MailboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailboxView.swift; sourceTree = "<group>"; };
+		6BF4B26D2B4F33D300FA2006 /* TriageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageButtonView.swift; sourceTree = "<group>"; };
+		6BF4B26F2B4F365400FA2006 /* NewEmailButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEmailButtonView.swift; sourceTree = "<group>"; };
 		A8F4471E2B3FFC5D00D4B284 /* EmailDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmailDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A8F447202B3FFD6100D4B284 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A8F447222B40025E00D4B284 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -124,7 +130,10 @@
 				59F33D6B2B3E6F4800F03C72 /* HTMLStringView.swift */,
 				595E33302B3E025500A55250 /* SharedMailboxView.swift */,
 				595E33342B3E084E00A55250 /* AccountMailboxView.swift */,
+				6BAF0C592B4E1B830041ADFF /* MailboxView.swift */,
 				596612832B3FDA3900795565 /* TriageView.swift */,
+				6BF4B26D2B4F33D300FA2006 /* TriageButtonView.swift */,
+				6BF4B26F2B4F365400FA2006 /* NewEmailButtonView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 				596627E62B3C0B8B00DD7E1A /* AccountContainer.swift in Sources */,
 				59F33D6C2B3E6F4800F03C72 /* HTMLStringView.swift in Sources */,
 				595E332F2B3D88A100A55250 /* IMAPFolder.swift in Sources */,
+				6BF4B26E2B4F33D300FA2006 /* TriageButtonView.swift in Sources */,
 				5966128F2B3FEF3900795565 /* Defaults.swift in Sources */,
 				A8F447212B3FFD6100D4B284 /* DataController.swift in Sources */,
 				596627E02B3BEBC700DD7E1A /* Constants.swift in Sources */,
@@ -259,7 +269,9 @@
 				59DB05892B3D26DF00E786CB /* EmailContainer.swift in Sources */,
 				A8F447232B40025E00D4B284 /* PersistenceController.swift in Sources */,
 				59DB05872B3CE9E600E786CB /* MailManager.swift in Sources */,
+				6BAF0C5A2B4E1B830041ADFF /* MailboxView.swift in Sources */,
 				595E33332B3E04EE00A55250 /* SharedFolder.swift in Sources */,
+				6BF4B2702B4F365400FA2006 /* NewEmailButtonView.swift in Sources */,
 				5975C36E2B3BC761008CC39B /* EmailServer.swift in Sources */,
 				596612842B3FDA3900795565 /* TriageView.swift in Sources */,
 				595E33352B3E084E00A55250 /* AccountMailboxView.swift in Sources */,
